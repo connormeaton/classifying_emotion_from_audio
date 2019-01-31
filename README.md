@@ -22,3 +22,6 @@ There are multiple files/directories within this data set that will be utilized 
 
 ### Feature Extraction & Analysis
 There will be several steps to my analysis. First, features will be extracted from the raw mp3 files using the Librosa library. Then, a database with the extracted features along with data from other tables will be created and processed with SQL. Finally, I will create my model by training a logistic regresion algorithm on my data, which which classify whether or not an audio file will exhibit positive or negative emotion.
+
+### Potential Features
+Using Librosa, numerous features can be extracted from raw .mp3 files, such as Mel-frequency cepstrum coefficients (MFCCs). However, more research is needed into learning about the selection of audio features for human voice prior to building the model.
