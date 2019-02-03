@@ -1,0 +1,1184 @@
+Last login: Fri Feb  1 10:12:55 on ttys000
+cmeaton@Connors-MacBook-Pro:~$ cd Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/
+cmeaton@Connors-MacBook-Pro:~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty$ ls
+CREMA-D/                  Proposal.ipynb            features_data.csv
+EDA.ipynb                 feature_extraction.ipynb
+cmeaton@Connors-MacBook-Pro:~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty$ psql
+psql (11.1)
+Type "help" for help.
+
+cmeaton=# \d
+Did not find any relations.
+cmeaton=# \db
+       List of tablespaces
+    Name    |  Owner  | Location 
+------------+---------+----------
+ pg_default | cmeaton | 
+ pg_global  | cmeaton | 
+(2 rows)
+
+cmeaton@Connors-MacBook-Pro:~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNu$ psql
+psql (11.1)
+Type "help" for help.
+
+cmeaton=# \l
+                                List of databases
+   Name    |  Owner  | Encoding |   Collate   |    Ctype    |  Access privileges  
+-----------+---------+----------+-------------+-------------+---------------------
+ cmeaton   | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ names     | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ postgres  | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ store     | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ template0 | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/cmeaton         +
+           |         |          |             |             | cmeaton=CTc/cmeaton
+ template1 | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/cmeaton         +
+           |         |          |             |             | cmeaton=CTc/cmeaton
+(6 rows)
+
+cmeaton=# \dt
+Did not find any relations.
+cmeaton=# \connect cmeaton
+You are now connected to database "cmeaton" as user "cmeaton".
+cmeaton=# \l
+                                List of databases
+   Name    |  Owner  | Encoding |   Collate   |    Ctype    |  Access privileges  
+-----------+---------+----------+-------------+-------------+---------------------
+ cmeaton   | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ names     | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ postgres  | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ store     | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ template0 | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/cmeaton         +
+           |         |          |             |             | cmeaton=CTc/cmeaton
+ template1 | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/cmeaton         +
+           |         |          |             |             | cmeaton=CTc/cmeaton
+(6 rows)
+
+cmeaton=# \dt
+Did not find any relations.
+cmeaton=# CREATE TABLE features
+cmeaton-# ;l
+ERROR:  syntax error at or near ";"
+LINE 2: ;
+        ^
+cmeaton-# CREATE TABLE features;
+ERROR:  syntax error at or near "l"
+LINE 1: l
+        ^
+cmeaton=# CREATE DATABASE features;
+CREATE DATABASE
+cmeaton=# \l
+                                List of databases
+   Name    |  Owner  | Encoding |   Collate   |    Ctype    |  Access privileges  
+-----------+---------+----------+-------------+-------------+---------------------
+ cmeaton   | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ features  | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ names     | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ postgres  | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ store     | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ template0 | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/cmeaton         +
+           |         |          |             |             | cmeaton=CTc/cmeaton
+ template1 | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/cmeaton         +
+           |         |          |             |             | cmeaton=CTc/cmeaton
+(7 rows)
+
+cmeaton=# GRANT ALL PRIVELAGES ON DATABASE features
+cmeaton-# \connect features
+You are now connected to database "features" as user "cmeaton".
+features-# \dt
+Did not find any relations.
+features-# \q
+cmeaton@Connors-MacBook-Pro:~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNu$ psql
+psql (11.1)
+Type "help" for help.
+
+cmeaton=# \dt
+Did not find any relations.
+cmeaton=# \l
+                                List of databases
+   Name    |  Owner  | Encoding |   Collate   |    Ctype    |  Access privileges  
+-----------+---------+----------+-------------+-------------+---------------------
+ cmeaton   | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ features  | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ names     | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ postgres  | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ store     | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ template0 | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/cmeaton         +
+           |         |          |             |             | cmeaton=CTc/cmeaton
+ template1 | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/cmeaton         +
+           |         |          |             |             | cmeaton=CTc/cmeaton
+(7 rows)
+
+cmeaton=# \connect features
+You are now connected to database "features" as user "cmeaton".
+features=# CREATE TABLE audio_features;
+ERROR:  syntax error at or near ";"
+LINE 1: CREATE TABLE audio_features;
+                                   ^
+features=# \dt
+Did not find any relations.
+features=# \d
+Did not find any relations.
+features=# CREATE TABLE
+features-# cens float,
+features-# centroid float;
+ERROR:  syntax error at or near "float"
+LINE 2: cens float,
+             ^
+features=# COPY features
+features-# FROM features_data.csv
+features-# CSV HEADER;
+ERROR:  syntax error at or near "features_data"
+LINE 2: FROM features_data.csv
+             ^
+features=# pwd
+features-# COPY features
+features-# FROM 'features_data.csv'
+features-# CSV HEADER;
+ERROR:  syntax error at or near "pwd"
+LINE 1: pwd
+        ^
+features=# ^C
+features=# 
+features=# 
+features=# ;
+features=# COPY features
+features-# FROM 'features_data.csv'
+features-# CSV HEADER;
+ERROR:  relation "features" does not exist
+features=# \l
+                                List of databases
+   Name    |  Owner  | Encoding |   Collate   |    Ctype    |  Access privileges  
+-----------+---------+----------+-------------+-------------+---------------------
+ cmeaton   | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ features  | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ names     | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ postgres  | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ store     | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ template0 | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/cmeaton         +
+           |         |          |             |             | cmeaton=CTc/cmeaton
+ template1 | cmeaton | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/cmeaton         +
+           |         |          |             |             | cmeaton=CTc/cmeaton
+(7 rows)
+
+features=# CREATE TABLE audio_features (
+features(# cens float
+features(# centroid float
+features(# chroma float
+features(# contrast float
+features(# energy float
+features(# filename 
+features(# 
+features(# ;
+features(# )
+features-# ;
+ERROR:  syntax error at or near "centroid"
+LINE 3: centroid float
+        ^
+features=# CREATE TABLE practice (
+features(# name int,
+features(# other float
+features(# );
+CREATE TABLE
+features=# \d
+          List of relations
+ Schema |   Name   | Type  |  Owner  
+--------+----------+-------+---------
+ public | practice | table | cmeaton
+(1 row)
+
+features=# \dt
+          List of relations
+ Schema |   Name   | Type  |  Owner  
+--------+----------+-------+---------
+ public | practice | table | cmeaton
+(1 row)
+
+features=# CREATE TABLE audio_features (
+features(# cens float,
+features(# centroid float,
+features(# chroma float,
+features(# contrast float,
+features(# energy float,
+features(# filename varchar(255),
+features(# flatness float,
+features(# melspec float,
+features(# mfcc float,
+features(# tempo float,
+features(# tonnetz float
+features(# );
+CREATE TABLE
+features=# COPY audio_features
+features-# FROM 'features_data.csv'
+features-# CSV HEADER;
+ERROR:  could not open file "features_data.csv" for reading: No such file or directory
+HINT:  COPY FROM instructs the PostgreSQL server process to read a file. You may want a client-side facility such as psql's \copy.
+features=# COPY audio_features
+features-# FROM 'features_data.csv'
+features-# CSV HEADER;
+ERROR:  could not open file "features_data.csv" for reading: No such file or directory
+HINT:  COPY FROM instructs the PostgreSQL server process to read a file. You may want a client-side facility such as psql's \copy.
+features=# \! pwd
+/Users/cmeaton/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty
+features=# \! ls
+CREMA-D                  Proposal.ipynb           features_data.csv
+EDA.ipynb                feature_extraction.ipynb
+features=# \copy
+\copy: arguments required
+features=# \copy audio_features
+\copy: parse error at end of line
+features=# \copy audio_features FROM ~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/features_data.csv' WITH DELIMITER ',' CSV HEADER;
+ERROR:  syntax error at or near "' WITH DELIMITER '"
+LINE 1: COPY  audio_features FROM STDIN ' WITH DELIMITER ',' CSV HEA...
+                                        ^
+features=# \copy audio_features FROM '~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/features_data.csv' WITH DELIMITER ',' CSV HEADER;
+ERROR:  extra data after last expected column
+CONTEXT:  COPY audio_features, line 2: "0,0.279777711806424,1669.241595942522,0.673603858500592,21.57294978447793,0.020367154851555824,1001_..."
+features=# SELECT * FROM audio_features;
+ cens | centroid | chroma | contrast | energy | filename | flatness | melspec | mfcc | tempo | tonnetz 
+------+----------+--------+----------+--------+----------+----------+---------+------+-------+---------
+(0 rows)
+
+features=# CREATE TABLE audio_features (
+features(# features(# cens float,
+features(# features(# centroid float,
+features(# features(# chroma float,
+features(# features(# contrast float,
+features(# features(# energy float,
+features(# features(# filename varchar(255),
+features(# features(# flatness float,
+features(# features(# melspec float,
+features(# features(# mfcc float,
+features(# features(# tempo float,
+features(# features(# tonnetz float
+features(# features(# );
+features(# 
+features(# ;
+features(# );
+features(# ;
+features(# SELECT * FROM audio_features;
+features(# 
+features(# quit
+Use \q to quit.
+features(# \q
+cmeaton@Connors-MacBook-Pro:~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty$ psql
+psql (11.1)
+Type "help" for help.
+
+cmeaton=# \connect features
+You are now connected to database "features" as user "cmeaton".
+features=# CREATE TABLE audio (
+features(# id float,
+features(# cens float,
+features(# centoid float,
+features(# chroma float,
+features(# contrast float,
+features(# energy float,
+features(# filename varchar(255),
+features(# flatness float,
+features(# melspec float,
+features(# mfcc float,
+features(# tempo float,
+features(# tonnetz float
+features(# );
+CREATE TABLE
+features=# \copy audio FROM '~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/features_data.csv' WITH DELIMITER ',' CSV HEADER;
+COPY 7837
+features=# select * FROM audio
+features-# SELECT * FROM audio;
+ERROR:  syntax error at or near "SELECT"
+LINE 2: SELECT * FROM audio;
+        ^
+features=# SELECT * FROM audio;
+  id  |       cens        |     centoid      |      chroma       |     contrast     |       energy        |      filename       |      flatness       |       melspec        |       mfcc        |       tempo        |        tonnetz        
+------+-------------------+------------------+-------------------+------------------+---------------------+---------------------+---------------------+----------------------+-------------------+--------------------+-----------------------
+    0 | 0.279777711806424 | 1669.24159594252 | 0.673603858500592 | 21.5729497844779 |  0.0203671548515558 | 1001_DFA_ANG_XX.mp3 | 0.00533320847898722 |    0.219329774670671 | -17.2144606842778 | 0.0714224325206525 |  -0.00629380700663203
+    1 |  0.27191426898043 |  1582.2116895626 | 0.646161068595392 | 17.7313658919327 | 0.00973675213754177 | 1036_IWW_SAD_XX.mp3 | 0.00714558269828558 |   0.0441114246901398 | -14.6689467947399 |  0.103545852669229 |   -0.0069172867778338
+    2 | 0.273672856463257 |  1400.6790318937 | 0.632570443294699 | 18.4394085318731 | 0.00623393291607499 | 1023_IWW_SAD_XX.mp3 | 0.00348874344490469 |   0.0132211183783769 | -15.4084848650081 |  0.133960284552976 |   -0.0119882721702322
+    3 | 0.271936031247591 | 1446.48901235764 | 0.628540255332211 | 18.9924875674436 | 0.00815130863338709 | 1018_TIE_FEA_XX.mp3 | 0.00286585884168744 |   0.0284244263184661 | -15.1547445235972 |  0.125930175356076 |  -0.00831811319208134
+    4 | 0.281903977101344 | 1537.72827429673 | 0.614400479819946 | 20.8215965111298 |  0.0532167479395866 | 1039_TIE_HAP_XX.mp3 | 0.00335663417354226 |     1.72976239467337 | -13.0924380071903 |  0.071908136869843 |  -0.00551865680894347
+    5 | 0.280795083829829 | 1633.96748631768 | 0.624506423920551 | 19.0085538978656 |  0.0150185003876686 | 1079_ITH_ANG_XX.mp3 | 0.00711559876799583 |    0.113535602572142 | -14.5635643234173 | 0.0836369382741585 |   -0.0020117362099615
+    6 | 0.282129825439379 | 1389.46576063599 | 0.686473970603097 | 17.3025218045782 | 0.00545780081301928 | 1031_IWW_FEA_XX.mp3 | 0.00420121010392904 |  0.00969678548834477 | -14.9625108552356 |  0.104024982011817 |  -0.00760317428954599
+    7 | 0.279477071792197 | 1940.00491978274 | 0.669053213651119 | 17.7279463190796 | 0.00597455725073814 | 1024_IWW_FEA_XX.mp3 |  0.0155060989782214 |    0.011523062140985 | -15.6557722595081 |  0.107722557918071 |   0.00224850719112506
+    8 | 0.275246874083286 | 1626.83326793486 | 0.558378365965367 | 20.0416445047398 |  0.0107066547498107 | 1010_IWW_HAP_XX.mp3 | 0.00320056825876236 |   0.0481303800025282 | -15.8886189552607 |  0.100875574661676 |   0.00565487447287542
+    9 |   0.2790650516668 | 1792.48782507237 | 0.658182576570574 | 20.8637300026034 | 0.00709285214543343 | 1005_IWW_HAP_XX.mp3 | 0.00553864846006036 |   0.0190714578368288 | -17.9773100860227 | 0.0991447122250187 |   -0.0165224205550187
+   10 |  0.28289600786586 | 1739.67651970742 | 0.745118051320628 | 18.6509976491782 | 0.00322551559656858 | 1088_WSI_FEA_XX.mp3 |  0.0100571662187576 |  0.00290185524180164 | -16.4511799687821 |   0.12334406328024 |   -0.0101732662665579
+   11 | 0.276601581479969 | 1819.54259315269 | 0.702969473809613 | 19.3818063528006 | 0.00618947995826602 | 1088_DFA_FEA_XX.mp3 |  0.0107211414724588 |   0.0224199869521284 | -15.9185449088012 |   0.15342176275268 |   -0.0125660123563591
+   12 | 0.279868500509457 | 1418.13465567237 | 0.623199433664381 | 18.6575139485432 |  0.0047175083309412 | 1028_TIE_NEU_XX.mp3 | 0.00311031332239509 |  0.00628222481691377 | -15.7409522758242 |  0.149435852273274 |   -0.0147340238931069
+   13 | 0.273501695177263 | 1657.65698575142 | 0.632870978751682 | 19.5182976878379 |  0.0100573087111115 | 1014_IWW_NEU_XX.mp3 | 0.00679047172889113 |   0.0353453845733199 | -14.7052968721792 |  0.121869530518555 |   -0.0047466341262059
+   14 | 0.281748894696843 | 1567.24733099917 |  0.66972668038072 | 20.3300515114626 | 0.00818899087607861 | 1001_IWW_NEU_XX.mp3 | 0.00440576439723372 |   0.0263742655862101 | -17.8649949568073 |  0.107406390698193 |  -0.00172169419760612
+   15 | 0.279287653266865 | 1714.78806315856 | 0.640036475244894 | 20.4194923376527 |  0.0191923566162586 | 1056_IWW_ANG_XX.mp3 | 0.00617970153689384 |    0.157287388233623 |  -14.588174204413 | 0.0758633089362965 |  -0.00630259723184254
+   16 | 0.269551973718645 | 1654.90518501966 | 0.540768876088126 | 20.2583982622566 |  0.0170957446098328 | 1043_IWW_ANG_XX.mp3 | 0.00725560635328293 |    0.106419373338544 | -14.6145657074539 | 0.0964432923477222 |   -0.0130166561435662
+   17 | 0.280654421498253 | 1268.60261397443 | 0.683045517409296 | 17.8978191188403 | 0.00520150549709797 | 1026_IOM_SAD_XX.mp3 | 0.00250309379771352 |   0.0101016428952405 | -15.2312483208731 |  0.137626394570018 |   -0.0165915735168794
+   18 | 0.270593544736562 | 1301.26840714605 | 0.643302720363518 | 18.5854423950587 | 0.00622420571744442 | 1033_IOM_SAD_XX.mp3 | 0.00305439345538616 |   0.0149799955850149 | -15.0715254604544 |  0.134654057230064 |   -0.0164116921044975
+   19 | 0.258862276619466 | 1379.61291440765 | 0.567416241401726 |  18.726025723719 |  0.0128878159448504 | 1021_IOM_FEA_XX.mp3 | 0.00361576513387263 |   0.0838373804636585 | -16.3016851832542 |  0.128514431449465 |  -0.00466585584299214
+   20 | 0.264046440414355 | 2020.20695477351 | 0.542178764477021 | 22.6607426174329 |  0.0374339483678341 | 1079_IEO_DIS_MD.mp3 | 0.00493146199733019 |    0.629113089544168 | -14.4081904462415 |  0.145537918106021 |  -0.00393288661193325
+   21 | 0.282351899237076 | 1377.98584370453 | 0.706669487920231 | 17.3251333470984 | 0.00741237727925181 | 1034_IOM_FEA_XX.mp3 |  0.0043532270938158 |   0.0266343588691128 | -15.0412292153323 |  0.113110301791944 |  -0.00163069268624319
+   22 | 0.275654088619752 | 1424.36254582477 | 0.598997972666377 | 20.5582363769067 |  0.0109241688624024 | 1038_IWL_DIS_XX.mp3 | 0.00406918302178383 |   0.0427914045282562 | -15.0594272881444 |  0.137923523825079 |  -0.00458982607893884
+   23 | 0.272002943615996 | 1454.99085933287 | 0.574955351414643 | 22.2894829518242 |  0.0275940969586372 | 1015_IOM_HAP_XX.mp3 | 0.00422211131080985 |    0.334226919552461 | -13.9311991871278 | 0.0934767482497769 |   -0.0125509099489592
+   24 | 0.281002945039843 | 1775.90301981734 | 0.659611152896333 | 20.491024761077_HI.mp3 |  0.0121928099542856 |    0.773622392515925 | -12.8405172140985 |  0.101071977063243 |   -0.0045411710027582
+   25 | 0.260877725130126 | 1682.05969025638 |  0.53879846728147 | 20.784826078643_XX.mp3 |  0.0090390695258975 |     1.28504965337552 |  -13.948279092782 | 0.0909964429752211 |  -0.00666642837849777
+   26 |  0.26305946308735 |  1589.3061444951 | 0.516869932702449 | 21.034505032885_XX.mp3 | 0.00561683438718319 |     1.18636336019344 | -14.2538308310906 | 0.0942891703600984 |  -0.00753113071188537
+   27 | 0.262418077287942 | 1202.61686573483 | 0.557361602470692 | 20.715336553566_XX.mp3 |  0.0025785188190639 |   0.0972783457356072 | -14.3734575253806 |  0.106291287755312 |   -0.0135633536191481
+   28 | 0.277190043652933 | 1254.44142792135 |  0.61660429974148 | 18.163628129552_XX.mp3 | 0.00440347800031304 |   0.0331582888337427 | -14.5442791162358 |  0.110153088118157 |   -0.0100686838895595
+   29 | 0.281345681756424 | 1505.37134840089 | 0.643451653963793 | 19.033157917902_XX.mp3 | 0.00584768038243055 |   0.0269338974438522 | -14.9634277192412 |  0.134693413821707 | -6.96055967603127e-05
+   30 | 0.270284462965217 | 2213.45321022568 | 0.597338959769577 | 22.203435354836_HI.mp3 |  0.0140463095158339 |    0.620048197174696 | -14.5377529317588 | 0.0529880465292468 |  -0.00655052153540172
+   31 | 0.278454459759839 | 1876.79349161358 |  0.71007638952661 | 19.325984829460_XX.mp3 |  0.0098190326243639 |  0.00514918282608853 | -16.7717658687855 |  0.125901738752247 |    -0.014785578269996
+   32 | 0.278321851660736 | 1760.59888292824 | 0.671204871877044 | 19.010615015693features=# \! ls
+CREMA-D                  Proposal.ipynb           features_data.csv
+EDA.ipynb                feature_extraction.ipynb
+features=# CREATE TABLE emotion (
+features(# id int,
+features(# filename varchar(255),
+features(# Voicevote varchar(255),
+features(# voicelevel float,
+features(# facevot varchar(255),
+features(# facelevel float,
+features(# multivote varchar(255),
+features(# multilevel float
+features(# );
+CREATE TABLE
+features=# \copy emotion FROM ~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/CREMA-D/processedResults/summaryTable.csv' WITH DELIMITER ',' CSV HEADER;
+ERROR:  syntax error at or near "' WITH DELIMITER '"
+LINE 1: COPY  emotion FROM STDIN ' WITH DELIMITER ',' CSV HEADER;
+                                 ^
+features=# \copy emotion FROM '~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/CREMA-D/processedResults/summaryTable.csv' WITH DELIMITER ',' CSV HEADER;
+ERROR:  invalid input syntax for type double precision: "30.67:51.00"
+CONTEXT:  COPY emotion, line 8, column facelevel: "30.67:51.00"
+features=# \copy emotion FROM '~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/CREMA-D/processedResults/emotion_label.csv' WITH DELIMITER ',' CSV HEADER;
+ERROR:  missing data for column "voicelevel"
+CONTEXT:  COPY emotion, line 2: "0,1001_IEO_NEU_XX,N"
+features=# CREATE TABLE emotion_levels (
+features(# filename varchar(255),
+features(# emotion varchar(255)
+features(# );
+CREATE TABLE
+features=# \copy emotion_levels FROM '~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/CREMA-D/processedResults/emotion_label.csv' WITH DELIMITER ',' CSV HEADER;
+ERROR:  extra data after last expected column
+CONTEXT:  COPY emotion_levels, line 2: "0,1001_IEO_NEU_XX,N"
+features=# CREATE TABLE emotions (
+features(# ind int,
+features(# filename varchar(255),
+features(# emotion varchar(255)
+features(# );
+CREATE TABLE
+features=# \copy emotions FROM '~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/CREMA-D/processedResults/emotion_label.csv' WITH DELIMITER ',' CSV HEADER;
+COPY 7442
+features=# SELECT * FROM emotions
+features-# ;
+ ind  |    filename     |  emotion  
+------+-----------------+-----------
+    0 | 1001_IEO_NEU_XX | N
+    1 | 1001_IEO_HAP_LO | N
+    2 | 1001_IEO_HAP_MD | N
+    3 | 1001_IEO_HAP_HI | H
+    4 | 1001_IEO_SAD_LO | N
+    5 | 1001_IEO_SAD_MD | N
+    6 | 1001_IEO_SAD_HI | N
+    7 | 1001_IEO_ANG_LO | N
+    8 | 1001_IEO_ANG_MD | A:D
+    9 | 1001_IEO_ANG_HI | D
+   10 | 1001_IEO_FEA_LO | N
+   11 | 1001_IEO_FEA_MD | F
+   12 | 1001_IEO_FEA_HI | D:F
+   13 | 1001_IEO_DIS_LO | N
+   14 | 1001_IEO_DIS_MD | N
+   15 | 1001_IEO_DIS_HI | A
+   16 | 1001_TIE_NEU_XX | N
+   17 | 1001_TIE_HAP_XX | N
+   18 | 1001_TIE_SAD_XX | N
+   19 | 1001_TIE_ANG_XX | A
+   20 | 1001_TIE_FEA_XX | A
+   21 | 1001_TIE_DIS_XX | D
+   22 | 1001_IOM_NEU_XX | N
+   23 | 1001_IOM_HAP_XX | N
+   24 | 1001_IOM_SAD_XX | N
+   25 | 1001_IOM_ANG_XX | N
+   26 | 1001_IOM_FEA_XX | A
+   27 | 1001_IOM_DIS_XX | N
+   28 | 1001_IWW_NEU_XX | N
+   29 | 1001_IWW_HAP_XX | N
+   30 | 1001_IWW_SAD_XX | F:N
+   31 | 1001_IWW_ANG_XX | D
+   32 | 1001_IWW_FEA_XX | A
+   33 | 1001_IWW_DIS_XX | N
+   34 | 1001_TAI_NEU_XX | N
+   35 | 1001_TAI_HAP_XX | N
+   36 | 1001_TAI_SAD_XX | N
+   37 | 1001_TAI_ANG_XX | D:N
+   38 | 1001_TAI_FEA_XX | A
+   39 | 1001_TAI_DIS_XX | N
+   40 | 1001_MTI_NEU_XX | N
+   41 | 1001_MTI_HAP_XX | H:N
+   42 | 1001_MTI_SAD_XX | N
+   43 | 1001_MTI_ANG_XX | N
+   44 | 1001_MTI_FEA_XX | N
+   45 | 1001_MTI_DIS_XX | N
+   46 | 1001_IWL_NEU_XX | N
+   47 | 1001_IWL_HAP_XX | N
+   48 | 1001_IWL_SAD_XX | N
+   49 | 1001_IWL_ANG_XX | A
+   50 | 1001_IWL_FEA_XX | A
+   51 | 1001_IWL_DIS_XX | N
+   52 | 1001_ITH_NEU_XX | N
+   53 | 1001_ITH_HAP_XX | F:N
+features=# CREATE TABLE demo (
+features(# id int,
+features(# age int,
+features(# sex varchar(255),
+features(# race varchar(255),
+features(# ethinicity varchar(255)
+features(# );
+CREATE TABLE
+features=# \copy audio FROM '~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/Vide.csv' WITH DELIMITER ',' CSV HEADER;
+
+features=# \copy demo FROM '~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/VideoDemographics.csv' WITH DELIMITER ',' CSV HEADER;
+/Users/cmeaton/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/VideoDemographics.csv: No such file or directory
+features=# \copy demo FROM '~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/CREMA_D/VideoDemographics.csv' WITH DELIMITER ',' CSV HEADER;
+/Users/cmeaton/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/CREMA_D/VideoDemographics.csv: No such file or directory
+features=# \copy demo FROM ~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/CREMA-D/VideoDemographics.csv' WITH DELIMITER ',' CSV HEADER;
+ERROR:  syntax error at or near "' WITH DELIMITER '"
+LINE 1: COPY  demo FROM STDIN ' WITH DELIMITER ',' CSV HEADER;
+                              ^
+features=# \copy demo FROM '~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/CREMA-D/VideoDemographics.csv' WITH DELIMITER ',' CSV HEADER;
+COPY 91
+features=# SELECT * FROM demo;
+  id  | age |  sex   |       race       |  ethinicity  
+------+-----+--------+------------------+--------------
+ 1001 |  51 | Male   | Caucasian        | Not Hispanic
+ 1002 |  21 | Female | Caucasian        | Not Hispanic
+ 1003 |  21 | Female | Caucasian        | Not Hispanic
+ 1004 |  42 | Female | Caucasian        | Not Hispanic
+ 1005 |  29 | Male   | African American | Not Hispanic
+ 1006 |  58 | Female | Caucasian        | Not Hispanic
+ 1007 |  38 | Female | African American | Not Hispanic
+ 1008 |  46 | Female | Caucasian        | Not Hispanic
+ 1009 |  24 | Female | Caucasian        | Not Hispanic
+ 1010 |  27 | Female | Caucasian        | Not Hispanic
+ 1011 |  32 | Male   | Caucasian        | Not Hispanic
+ 1012 |  23 | Female | Caucasian        | Not Hispanic
+ 1013 |  22 | Female | Caucasian        | Hispanic
+ 1014 |  24 | Male   | Caucasian        | Not Hispanic
+ 1015 |  32 | Male   | African American | Not Hispanic
+ 1016 |  61 | Male   | Caucasian        | Not Hispanic
+ 1017 |  42 | Male   | Caucasian        | Not Hispanic
+ 1018 |  25 | Female | Caucasian        | Hispanic
+ 1019 |  29 | Male   | Asian            | Not Hispanic
+ 1020 |  61 | Female | Caucasian        | Not Hispanic
+ 1021 |  30 | Female | Caucasian        | Not Hispanic
+ 1022 |  22 | Male   | Caucasian        | Not Hispanic
+ 1023 |  22 | Male   | Caucasian        | Not Hispanic
+ 1024 |  59 | Female | Caucasian        | Not Hispanic
+ 1025 |  48 | Female | Caucasian        | Not Hispanic
+ 1026 |  33 | Male   | Caucasian        | Not Hispanic
+ 1027 |  44 | Male   | Caucasian        | Not Hispanic
+ 1028 |  57 | Female | Caucasian        | Not Hispanic
+ 1029 |  33 | Female | African American | Not Hispanic
+ 1030 |  42 | Female | African American | Not Hispanic
+ 1031 |  31 | Male   | Caucasian        | Hispanic
+ 1032 |  30 | Male   | African American | Not Hispanic
+ 1033 |  31 | Male   | Caucasian        | Not Hispanic
+ 1034 |  74 | Male   | Caucasian        | Not Hispanic
+ 1035 |  48 | Male   | Caucasian        | Not Hispanic
+ 1036 |  49 | Male   | African American | Not Hispanic
+ 1037 |  45 | Female | Caucasian        | Not Hispanic
+ 1038 |  21 | Male   | African American | Not Hispanic
+ 1039 |  51 | Male   | African American | Not Hispanic
+ 1040 |  42 | Male   | Caucasian        | Not Hispanic
+ 1041 |  42 | Male   | Caucasian        | Not Hispanic
+ 1042 |  37 | Male   | African American | Not Hispanic
+ 1043 |  25 | Female | Caucasian        | Hispanic
+ 1044 |  40 | Male   | Caucasian        | Not Hispanic
+ 1045 |  22 | Male   | Asian            | Not Hispanic
+ 1046 |  22 | Female | Caucasian        | Hispanic
+ 1047 |  22 | Female | Unknown          | Hispanic
+ 1048 |  38 | Male   | Caucasian        | Hispanic
+ 1049 |  25 | Female | Caucasian        | Hispanic
+ 1050 |  62 | Male   | African American | Not Hispanic
+features=# SELECT audio.*, emotions.emotion
+features-# FROM audio LEFT JOIN emotion
+features-# ON audio.filename = emotions.filename;
+ERROR:  missing FROM-clause entry for table "emotions"
+LINE 3: ON audio.filename = emotions.filename;
+                            ^
+features=# SELECT audio.*, emotions.emotion
+FROM audio, emotions LEFT JOIN emotion
+ON audio.filename = emotions.filename;
+ERROR:  invalid reference to FROM-clause entry for table "audio"
+LINE 3: ON audio.filename = emotions.filename;
+           ^
+HINT:  There is an entry for table "audio", but it cannot be referenced from this part of the query.
+features=# SELECT audio.*, emotions.emotion
+FROM audio, emotions LEFT JOIN emotion
+ON audio.filename = emotions.filename;
+ERROR:  invalid reference to FROM-clause entry for table "audio"
+LINE 3: ON audio.filename = emotions.filename;
+           ^
+HINT:  There is an entry for table "audio", but it cannot be referenced from this part of the query.
+features=# SELECT table1.column1, table2.column2...
+features-# FROM table1
+features-# INNER JOIN table2
+features-# SELECT audio.*, emotions.emotion
+FROM audio, emotions LEFT JOIN emotion
+ON audio.filename = emotions.filename;
+ERROR:  syntax error at or near ".."
+LINE 1: SELECT table1.column1, table2.column2...
+                                             ^
+features=# SELECT audio.*, emotions.emotion
+features-# FROM audio
+features-# INNER JOIN emotions
+features-# ON audio.filename = emotions.filename;
+ id | cens | centoid | chroma | contrast | energy | filename | flatness | melspec | mfcc | tempo | tonnetz | emotion 
+----+------+---------+--------+----------+--------+----------+----------+---------+------+-------+---------+---------
+(0 rows)
+
+features=# SELECT * FROM audio
+features-# ;
+  id  |       cens        |     centoid      |      chroma       |     contrast     |       energy        |      filename       |      flatness       |       melspec        |       mfcc        |       tempo        |        tonnetz        
+------+-------------------+------------------+-------------------+------------------+---------------------+---------------------+---------------------+----------------------+-------------------+--------------------+-----------------------
+    0 | 0.279777711806424 | 1669.24159594252 | 0.673603858500592 | 21.5729497844779 |  0.0203671548515558 | 1001_DFA_ANG_XX.mp3 | 0.00533320847898722 |    0.219329774670671 | -17.2144606842778 | 0.0714224325206525 |  -0.00629380700663203
+    1 |  0.27191426898043 |  1582.2116895626 | 0.646161068595392 | 17.7313658919327 | 0.00973675213754177 | 1036_IWW_SAD_XX.mp3 | 0.00714558269828558 |   0.0441114246901398 | -14.6689467947399 |  0.103545852669229 |   -0.0069172867778338
+    2 | 0.273672856463257 |  1400.6790318937 | 0.632570443294699 | 18.4394085318731 | 0.00623393291607499 | 1023_IWW_SAD_XX.mp3 | 0.00348874344490469 |   0.0132211183783769 | -15.4084848650081 |  0.133960284552976 |   -0.0119882721702322
+    3 | 0.271936031247591 | 1446.48901235764 | 0.628540255332211 | 18.9924875674436 | 0.00815130863338709 | 1018_TIE_FEA_XX.mp3 | 0.00286585884168744 |   0.0284244263184661 | -15.1547445235972 |  0.125930175356076 |  -0.00831811319208134
+    4 | 0.281903977101344 | 1537.72827429673 | 0.614400479819946 | 20.8215965111298 |  0.0532167479395866 | 1039_TIE_HAP_XX.mp3 | 0.00335663417354226 |     1.72976239467337 | -13.0924380071903 |  0.071908136869843 |  -0.00551865680894347
+    5 | 0.280795083829829 | 1633.96748631768 | 0.624506423920551 | 19.0085538978656 |  0.0150185003876686 | 1079_ITH_ANG_XX.mp3 | 0.00711559876799583 |    0.113535602572142 | -14.5635643234173 | 0.0836369382741585 |   -0.0020117362099615
+    6 | 0.282129825439379 | 1389.46576063599 | 0.686473970603097 | 17.3025218045782 | 0.00545780081301928 | 1031_IWW_FEA_XX.mp3 | 0.00420121010392904 |  0.00969678548834477 | -14.9625108552356 |  0.104024982011817 |  -0.00760317428954599
+    7 | 0.279477071792197 | 1940.00491978274 | 0.669053213651119 | 17.7279463190796 | 0.00597455725073814 | 1024_IWW_FEA_XX.mp3 |  0.0155060989782214 |    0.011523062140985 | -15.6557722595081 |  0.107722557918071 |   0.00224850719112506
+    8 | 0.275246874083286 | 1626.83326793486 | 0.558378365965367 | 20.0416445047398 |  0.0107066547498107 | 1010_IWW_HAP_XX.mp3 | 0.00320056825876236 |   0.0481303800025282 | -15.8886189552607 |  0.100875574661676 |   0.00565487447287542
+    9 |   0.2790650516668 | 1792.48782507237 | 0.658182576570574 | 20.8637300026034 | 0.00709285214543343 | 1005_IWW_HAP_XX.mp3 | 0.00553864846006036 |   0.0190714578368288 | -17.9773100860227 | 0.0991447122250187 |   -0.0165224205550187
+   10 |  0.28289600786586 | 1739.67651970742 | 0.745118051320628 | 18.6509976491782 | 0.00322551559656858 | 1088_WSI_FEA_XX.mp3 |  0.0100571662187576 |  0.00290185524180164 | -16.4511799687821 |   0.12334406328024 |   -0.0101732662665579
+   11 | 0.276601581479969 | 1819.54259315269 | 0.702969473809613 | 19.3818063528006 | 0.00618947995826602 | 1088_DFA_FEA_XX.mp3 |  0.0107211414724588 |   0.0224199869521284 | -15.9185449088012 |   0.15342176275268 |   -0.0125660123563591
+   12 | 0.279868500509457 | 1418.13465567237 | 0.623199433664381 | 18.6575139485432 |  0.0047175083309412 | 1028_TIE_NEU_XX.mp3 | 0.00311031332239509 |  0.00628222481691377 | -15.7409522758242 |  0.149435852273274 |   -0.0147340238931069
+   13 | 0.273501695177263 | 1657.65698575142 | 0.632870978751682 | 19.5182976878379 |  0.0100573087111115 | 1014_IWW_NEU_XX.mp3 | 0.00679047172889113 |   0.0353453845733199 | -14.7052968721792 |  0.121869530518555 |   -0.0047466341262059
+   14 | 0.281748894696843 | 1567.24733099917 |  0.66972668038072 | 20.3300515114626 | 0.00818899087607861 | 1001_IWW_NEU_XX.mp3 | 0.00440576439723372 |   0.0263742655862101 | -17.8649949568073 |  0.107406390698193 |  -0.00172169419760612
+   15 | 0.279287653266865 | 1714.78806315856 | 0.640036475244894 | 20.419492337652features=# copy audio FROM '~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/features_data.csv.csv' WITH DELIMITER ',' CSV HEADER;
+ERROR:  could not open file "~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/features_data.csv.csv" for reading: No such file or directory
+HINT:  COPY FROM instructs the PostgreSQL server process to read a file. You may want a client-side facility such as psql's \copy.
+features=# copy audio FROM '~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/features_data.csv' WITH DELIMITER ',' CSV HEADER;
+ERROR:  could not open file "~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/features_data.csv" for reading: No such file or directory
+HINT:  COPY FROM instructs the PostgreSQL server process to read a file. You may want a client-side facility such as psql's \copy.
+features=# \! ls
+CREMA-D                  Proposal.ipynb           features_data.csv
+EDA.ipynb                feature_extraction.ipynb
+features=# copy audio FROM '~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/features_data.csv' WITH DELIMITER ',' CSV HEADER;
+ERROR:  could not open file "~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/features_data.csv" for reading: No such file or directory
+HINT:  COPY FROM instructs the PostgreSQL server process to read a file. You may want a client-side facility such as psql's \copy.
+features=# copy audio FROM '~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/features_data.csv' WITH DELIMITER ',' CSV HEADER;
+ERROR:  could not open file "~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/features_data.csv" for reading: No such file or directory
+HINT:  COPY FROM instructs the PostgreSQL server process to read a file. You may want a client-side facility such as psql's \copy.
+features=# copy audio FROM '~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/features_data.csv' WITH DELIMITER ',' CSV HEADER;
+ERROR:  could not open file "~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/features_data.csv" for reading: No such file or directory
+HINT:  COPY FROM instructs the PostgreSQL server process to read a file. You may want a client-side facility such as psql's \copy.
+features=# copy audio FROM '~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/features_data.csv' WITH DELIMITER ',' CSV HEADER;
+ERROR:  could not open file "~/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/features_data.csv" for reading: No such file or directory
+HINT:  COPY FROM instructs the PostgreSQL server process to read a file. You may want a client-side facility such as psql's \copy.
+features=# \! ls
+CREMA-D                  EDA.ipynb                Proposal.ipynb           feature_extraction.ipynb features_data.csv
+features=# \! pwd
+/Users/cmeaton/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty
+features=# copy audio FROM '/Users/cmeaton/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/features_data.csv' WITH DELIMITER ',' CSV HEADER;
+COPY 7837
+features=# SELECT audio.*, emotions.emotion                                                                                                     
+FROM audio
+INNER JOIN emotions
+ON audio.filename = emotions.filename;
+  id  |       cens        |     centoid      |      chroma       |     contrast     |       energy        |    filename     |      flatness       |       melspec        |       mfcc        |       tempo        |        tonnetz        |  emotion  
+------+-------------------+------------------+-------------------+------------------+---------------------+-----------------+---------------------+----------------------+-------------------+--------------------+-----------------------+-----------
+    0 | 0.279777711806424 | 1669.24159594252 | 0.673603858500592 | 21.5729497844779 |  0.0203671548515558 | 1001_DFA_ANG_XX | 0.00533320847898722 |    0.219329774670671 | -17.2144606842778 | 0.0714224325206525 |  -0.00629380700663203 | A
+    1 |  0.27191426898043 |  1582.2116895626 | 0.646161068595392 | 17.7313658919327 | 0.00973675213754177 | 1036_IWW_SAD_XX | 0.00714558269828558 |   0.0441114246901398 | -14.6689467947399 |  0.103545852669229 |   -0.0069172867778338 | F
+    2 | 0.273672856463257 |  1400.6790318937 | 0.632570443294699 | 18.4394085318731 | 0.00623393291607499 | 1023_IWW_SAD_XX | 0.00348874344490469 |   0.0132211183783769 | -15.4084848650081 |  0.133960284552976 |   -0.0119882721702322 | N
+    3 | 0.271936031247591 | 1446.48901235764 | 0.628540255332211 | 18.9924875674436 | 0.00815130863338709 | 1018_TIE_FEA_XX | 0.00286585884168744 |   0.0284244263184661 | -15.1547445235972 |  0.125930175356076 |  -0.00831811319208134 | S
+    4 | 0.281903977101344 | 1537.72827429673 | 0.614400479819946 | 20.8215965111298 |  0.0532167479395866 | 1039_TIE_HAP_XX | 0.00335663417354226 |     1.72976239467337 | -13.0924380071903 |  0.071908136869843 |  -0.00551865680894347 | H
+    5 | 0.280795083829829 | 1633.96748631768 | 0.624506423920551 | 19.0085538978656 |  0.0150185003876686 | 1079_ITH_ANG_XX | 0.00711559876799583 |    0.113535602572142 | -14.5635643234173 | 0.0836369382741585 |   -0.0020117362099615 | D
+    6 | 0.282129825439379 | 1389.46576063599 | 0.686473970603097 | 17.3025218045782 | 0.00545780081301928 | 1031_IWW_FEA_XX | 0.00420121010392904 |  0.00969678548834477 | -14.9625108552356 |  0.104024982011817 |  -0.00760317428954599 | F:N
+    7 | 0.279477071792197 | 1940.00491978274 | 0.669053213651119 | 17.7279463190796 | 0.00597455725073814 | 1024_IWW_FEA_XX |  0.0155060989782214 |    0.011523062140985 | -15.6557722595081 |  0.107722557918071 |   0.00224850719112506 | F
+    8 | 0.275246874083286 | 1626.83326793486 | 0.558378365965367 | 20.0416445047398 |  0.0107066547498107 | 1010_IWW_HAP_XX | 0.00320056825876236 |   0.0481303800025282 | -15.8886189552607 |  0.100875574661676 |   0.00565487447287542 | H
+    9 |   0.2790650516668 | 1792.48782507237 | 0.658182576570574 | 20.8637300026034 | 0.00709285214543343 | 1005_IWW_HAP_XX | 0.00553864846006036 |   0.0190714578368288 | -17.9773100860227 | 0.0991447122250186 |   -0.0165224205550187 | H:N
+   10 |  0.28289600786586 | 1739.67651970742 | 0.745118051320628 | 18.6509976491782 | 0.00322551559656858 | 1088_WSI_FEA_XX |  0.0100571662187576 |  0.00290185524180164 | -16.4511799687821 |   0.12334406328024 |   -0.0101732662665579 | N:S
+   11 | 0.276601581479969 | 1819.54259315269 | 0.702969473809613 | 19.3818063528006 | 0.00618947995826602 | 1088_DFA_FEA_XX |  0.0107211414724588 |   0.0224199869521284 | -15.9185449088012 |   0.15342176275268 |   -0.0125660123563591 | N
+   12 | 0.279868500509457 | 1418.13465567237 | 0.623199433664381 | 18.6575139485432 |  0.0047175083309412 | 1028_TIE_NEU_XX | 0.00311031332239509 |  0.00628222481691377 | -15.7409522758242 |  0.149435852273274 |   -0.0147340238931069 | N
+   13 | 0.273501695177263 | 1657.65698575142 | 0.632870978751682 | 19.5182976878379 |  0.0100573087111115 | 1014_IWW_NEU_XX | 0.00679047172889113 |   0.0353453845733199 | -14.7052968721792 |  0.121869530518555 |   -0.0047466341262059 | N
+   14 | 0.281748894696843 | 1567.24733099917 |  0.66972668038072 | 20.3300515114626 | 0.00818899087607861 | 1001_IWW_NEU_XX | 0.00440576439723372 |   0.0263742655862101 | -17.8649949568073 |  0.107406390698193 |  -0.00172169419760612 | N
+   15 | 0.279287653266865 | 1714.78806315856 | 0.640036475244894 | 20.4194923376527 |  0.0191923566162586 | 1056_IWW_ANG_XX | 0.00617970153689385 |    0.157287388233623 |  -14.588174204413 | 0.0758633089362965 |  -0.00630259723184254 | D
+   16 | 0.269551973718645 | 1654.90518501966 | 0.540768876088126 | 20.2583982622566 |  0.0170957446098328 | 1043_IWW_ANG_XX | 0.00725560635328293 |    0.106419373338544 | -14.6145657074539 | 0.0964432923477222 |   -0.0130166561435662 | D
+   17 | 0.280654421498253 | 1268.60261397443 | 0.683045517409296 | 17.8978191188403 | 0.00520150549709797 | 1026_IOM_SAD_XX | 0.00250309379771352 |   0.0101016428952405 | -15.2312483208731 |  0.137626394570018 |   -0.0165915735168794 | S
+   18 | 0.270593544736562 | 1301.26840714605 | 0.643302720363518 | 18.5854423950587 | 0.00622420571744442 | 1033_IOM_SAD_XX | 0.00305439345538616 |   0.0149799955850149 | -15.0715254604544 |  0.134654057230064 |   -0.0164116921044975 | N:S
+   19 | 0.258862276619466 | 1379.61291440765 | 0.567416241401726 |  18.726025723719 |  0.0128878159448504 | 1021_IOM_FEA_XX | 0.00361576513387263 |   0.0838373804636585 | -16.3016851832542 |  0.128514431449465 |  -0.00466585584299214 | N
+   20 | 0.264046440414355 | 2020.20695477351 | 0.542178764477021 | 22.6607426174329 |  0.0374339483678341 | 1079_IEO_DIS_MD | 0.00493146199733019 |    0.629113089544168 | -14.4081904462415 |  0.145537918106021 |  -0.00393288661193325 | N
+   21 | 0.282351899237076 | 1377.98584370453 | 0.706669487920231 | 17.3251333470984 | 0.00741237727925181 | 1034_IOM_FEA_XX |  0.0043532270938158 |   0.0266343588691128 | -15.0412292153323 |  0.113110301791944 |  -0.00163069268624319 | N
+   22 | 0.275654088619752 | 1424.36254582477 | 0.598997972666377 | 20.5582363769067 |  0.0109241688624024 | 1038_IWL_DIS_XX | 0.00406918302178383 |   0.0427914045282562 | -15.0594272881444 |  0.137923523825079 |  -0.00458982607893884 | D
+   23 | 0.272002943615996 | 1454.99085933287 | 0.574955351414643 | 22.2894829518242 |  0.0275940969586372 | 1015_IOM_HAP_XX | 0.00422211131080985 |    0.334226919552461 | -13.9311991871278 | 0.0934767482497768 |   -0.0125509099489592 | H
+   24 | 0.281002945039843 | 1775.90301981734 | 0.659611152896333 | 20.4910247610771 |  0.0347123332321644 | 1068_IEO_DIS_HI |  0.0121928099542856 |    0.773622392515925 | -12.8405172140985 |  0.101071977063243 |   -0.0045411710027582 | A:D
+   25 | 0.260877725130126 | 1682.05969025638 |  0.53879846728147 | 20.7848260786436 |  0.0490952841937542 | 1061_MTI_ANG_XX |  0.0090390695258975 |     1.28504965337552 |  -13.948279092782 | 0.0909964429752211 |  -0.00666642837849777 | A
+   26 |  0.26305946308735 |  1589.3061444951 | 0.516869932702449 | 21.0345050328854 |  0.0523364469408989 | 1074_MTI_ANG_XX | 0.00561683438718319 |     1.18636336019344 | -14.2538308310906 | 0.0942891703600984 |  -0.00753113071188537 | A
+   27 | 0.262418077287942 | 1202.61686573483 | 0.557361602470692 | 20.7153365535661 |  0.0163317937403917 | 1023_MTI_NEU_XX |  0.0025785188190639 |   0.0972783457356072 | -14.3734575253806 |  0.106291287755312 |   -0.0135633536191481 | N
+   28 | 0.277190043652933 | 1254.44142792135 |  0.61660429974148 | 18.1636281295522 | 0.00951957888901234 | 1036_MTI_NEU_XX | 0.00440347800031304 |   0.0331582888337427 | -14.5442791162358 |  0.110153088118157 |   -0.0100686838895595 | N
+   29 | 0.281345681756424 | 1505.37134840089 | 0.643451653963793 | 19.0331579179026 | 0.00766971800476313 | 1080_MTI_DIS_XX | 0.00584768038243055 |   0.0269338974438522 | -14.9634277192412 |  0.134693413821707 | -6.96055967603127e-05 | D
+   30 | 0.270284462965217 | 2213.45321022569 | 0.597338959769577 | 22.2034353548362 |  0.0359671823680401 | 1089_IEO_ANG_HI |  0.0140463095158339 |    0.620048197174696 | -14.5377529317588 | 0.0529880465292468 |  -0.00655052153540172 | A
+   31 | 0.278454459759839 | 1876.79349161358 |  0.71007638952661 | 19.3259848294604 |  0.0038056771736592 | 1091_ITS_FEA_XX |  0.0098190326243639 |  0.00514918282608853 | -16.7717658687855 |  0.125901738752247 |    -0.014785578269996 | F
+   32 | 0.278321851660736 | 1760.59888292824 | 0.671204871877044 | 19.0106150156938 | 0.00331171741709113 | 1084_ITS_FEA_XX | 0.00668393122032285 |    0.003507370188494 |  -17.837135662927 |  0.171691064181511 |   -0.0154877587921878 | F:N
+   33 | 0.279969164158179 | 1359.84399106718 | 0.676631648922675 | 20.4692397271564 | 0.00781639665365219 | 1001_MTI_SAD_XX | 0.00558261852711439 |   0.0261043621465439 | -18.0576910800128 |  0.112077895278474 |  -0.00743587016785545 | N
+   34 | 0.282173421827767 | 1282.62705256771 | 0.653543550232344 | 18.1469854784123 | 0.00499391509220004 | 1014_MTI_SAD_XX | 0.00343110808171332 |  0.00728538179230834 | -15.6224408635501 |  0.104632519919386 |   -0.0003082015750593 | N
+   35 | 0.280608457196179 | 1702.05232353519 | 0.698702479769911 | 18.2337054230206 | 0.00404568575322628 | 1017_ITS_DIS_XX |  0.0086536705493927 |  0.00419433043272212 | -15.7220743557673 |  0.130037275670172 |   0.00116963390179561 | F
+   36 | 0.284551469707558 |  2055.8682766736 |  0.69459593330086 | 19.8080226467158 | 0.00470815366134048 | 1002_ITS_DIS_XX | 0.00806224718689919 |  0.00702315302638321 | -19.3239871826304 |   0.11710667683948 |   -0.0014889629102855 | S
+   37 | 0.274144560553787 | 1496.71604586855 | 0.636016647451452 | 20.2590546223381 | 0.00446852017194033 | 1004_IOM_NEU_XX | 0.00456200120970607 |  0.00676719502772148 | -19.5430208596845 |  0.120079394803201 |   -0.0139949725106828 | N
+   38 | 0.271050409236733 | 1343.34456296955 | 0.658646864393888 | 18.9905125547082 | 0.00687821162864566 | 1011_IOM_NEU_XX | 0.00292629795148969 |   0.0196931759483031 | -15.4191854136643 |  0.121682225814027 |   -0.0168102766401409 | N
+   39 | 0.276523367696801 | 1576.43409660652 | 0.602071480730439 | 19.6219161639897 |  0.0153932105749846 | 1046_IOM_ANG_XX | 0.00347867258824408 |   0.0945148498658361 |  -14.643345622265 | 0.0975770327630611 |  -0.00525485262268297 | N
+   40 | 0.256740840829281 | 1657.90442935304 | 0.527464966712156 | 21.3386914027862 |  0.0372633300721645 | 1053_IOM_ANG_XX | 0.00339218322187662 |    0.525974734047262 | -14.4481582817444 | 0.0734588524598875 | -0.000414708731676977 | A
+   41 | 0.277363881523498 |  1202.1652790214 | 0.591194934239435 | 19.5798743329746 |  0.0127901313826442 | 1027_MTI_HAP_XX | 0.00243477965705097 |   0.0700584748414884 | -15.6818119935427 |  0.122432605276273 |   0.00299247401731319 | N
+   42 | 0.278370363136276 | 1328.97130580616 | 0.662556905424448 |  17.410012253772 | 0.00827674474567175 | 1032_MTI_HAP_XX | 0.00398190366104245 |   0.0283321646539226 | -15.2947362871288 |  0.121166677718779 |   -0.0123289496968615 | N
+features=# SELECT * FROM audio;
+  id  |       cens        |     centoid      |      chroma       |     contrast     |       energy        |      filename       |      flatness       |       melspec        |       mfcc        |       tempo        |        tonnetz        
+------+-------------------+------------------+-------------------+------------------+---------------------+---------------------+---------------------+----------------------+-------------------+--------------------+-----------------------
+    0 | 0.279777711806424 | 1669.24159594252 | 0.673603858500592 | 21.5729497844779 |  0.0203671548515558 | 1001_DFA_ANG_XX.mp3 | 0.00533320847898722 |    0.219329774670671 | -17.2144606842778 | 0.0714224325206525 |  -0.00629380700663203
+    1 |  0.27191426898043 |  1582.2116895626 | 0.646161068595392 | 17.7313658919327 | 0.00973675213754177 | 1036_IWW_SAD_XX.mp3 | 0.00714558269828558 |   0.0441114246901398 | -14.6689467947399 |  0.103545852669229 |   -0.0069172867778338
+    2 | 0.273672856463257 |  1400.6790318937 | 0.632570443294699 | 18.4394085318731 | 0.00623393291607499 | 1023_IWW_SAD_XX.mp3 | 0.00348874344490469 |   0.0132211183783769 | -15.4084848650081 |  0.133960284552976 |   -0.0119882721702322
+    3 | 0.271936031247591 | 1446.48901235764 | 0.628540255332211 | 18.9924875674436 | 0.00815130863338709 | 1018_TIE_FEA_XX.mp3 | 0.00286585884168744 |   0.0284244263184661 | -15.1547445235972 |  0.125930175356076 |  -0.00831811319208134
+    4 | 0.281903977101344 | 1537.72827429673 | 0.614400479819946 | 20.8215965111298 |  0.0532167479395866 | 1039_TIE_HAP_XX.mp3 | 0.00335663417354226 |     1.72976239467337 | -13.0924380071903 |  0.071908136869843 |  -0.00551865680894347
+    5 | 0.280795083829829 | 1633.96748631768 | 0.624506423920551 | 19.0085538978656 |  0.0150185003876686 | 1079_ITH_ANG_XX.mp3 | 0.00711559876799583 |    0.113535602572142 | -14.5635643234173 | 0.0836369382741585 |   -0.0020117362099615
+    6 | 0.282129825439379 | 1389.46576063599 | 0.686473970603097 | 17.3025218045782 | 0.00545780081301928 | 1031_IWW_FEA_XX.mp3 | 0.00420121010392904 |  0.00969678548834477 | -14.9625108552356 |  0.104024982011817 |  -0.00760317428954599
+    7 | 0.279477071792197 | 1940.00491978274 | 0.669053213651119 | 17.7279463190796 | 0.00597455725073814 | 1024_IWW_FEA_XX.mp3 |  0.0155060989782214 |    0.011523062140985 | -15.6557722595081 |  0.107722557918071 |   0.00224850719112506
+    8 | 0.275246874083286 | 1626.83326793486 | 0.558378365965367 | 20.0416445047398 |  0.0107066547498107 | 1010_IWW_HAP_XX.mp3 | 0.00320056825876236 |   0.0481303800025282 | -15.8886189552607 |  0.100875574661676 |   0.00565487447287542
+    9 |   0.2790650516668 | 1792.48782507237 | 0.658182576570574 | 20.8637300026034 | 0.00709285214543343 | 1005_IWW_HAP_XX.mp3 | 0.00553864846006036 |   0.0190714578368288 | -17.9773100860227 | 0.0991447122250187 |   -0.0165224205550187
+   10 |  0.28289600786586 | 1739.67651970742 | 0.745118051320628 | 18.6509976491782 | 0.00322551559656858 | 1088_WSI_FEA_XX.mp3 |  0.0100571662187576 |  0.00290185524180164 | -16.4511799687821 |   0.12334406328024 |   -0.0101732662665579
+   11 | 0.276601581479969 | 1819.54259315269 | 0.702969473809613 | 19.3818063528006 | 0.00618947995826602 | 1088_DFA_FEA_XX.mp3 |  0.0107211414724588 |   0.0224199869521284 | -15.9185449088012 |   0.15342176275268 |   -0.0125660123563591
+   12 | 0.279868500509457 | 1418.13465567237 | 0.623199433664381 | 18.6575139485432 |  0.0047175083309412 | 1028_TIE_NEU_XX.mp3 | 0.00311031332239509 |  0.00628222481691377 | -15.7409522758242 |  0.149435852273274 |   -0.0147340238931069
+   13 | 0.273501695177263 | 1657.65698575142 | 0.632870978751682 | 19.5182976878379 |  0.0100573087111115 | 1014_IWW_NEU_XX.mp3 | 0.00679047172889113 |   0.0353453845733199 | -14.7052968721792 |  0.121869530518555 |   -0.0047466341262059
+   14 | 0.281748894696843 | 1567.24733099917 |  0.66972668038072 | 20.3300515114626 | 0.00818899087607861 | 1001_IWW_NEU_XX.mp3 | 0.00440576439723372 |   0.0263742655862101 | -17.8649949568073 |  0.107406390698193 |  -0.00172169419760612
+   15 | 0.279287653266865 | 1714.78806315856 | 0.640036475244894 | 20.4194923376527 |  0.0191923566162586 | 1056_IWW_ANG_XX.mp3 | 0.00617970153689384 |    0.157287388233623 |  -14.588174204413 | 0.0758633089362965 |  -0.00630259723184254
+   16 | 0.269551973718645 | 1654.90518501966 | 0.540768876088126 | 20.2583982622566 |  0.0170957446098328 | 1043_IWW_ANG_XX.mp3 | 0.00725560635328293 |    0.106419373338544 | -14.6145657074539 | 0.0964432923477222 |   -0.0130166561435662
+   17 | 0.280654421498253 | 1268.60261397443 | 0.683045517409296 | 17.8978191188403 | 0.00520150549709797 | 1026_IOM_SAD_XX.mp3 | 0.00250309379771352 |   0.0101016428952405 | -15.2312483208731 |  0.137626394570018 |   -0.0165915735168794
+   18 | 0.270593544736562 | 1301.26840714605 | 0.643302720363518 | 18.5854423950587 | 0.00622420571744442 | 1033_IOM_SAD_XX.mp3 | 0.00305439345538616 |   0.0149799955850149 | -15.0715254604544 |  0.134654057230064 |   -0.0164116921044975
+   19 | 0.258862276619466 | 1379.61291440765 | 0.567416241401726 |  18.726025723719 |  0.0128878159448504 | 1021_IOM_FEA_XX.mp3 | 0.00361576513387263 |   0.0838373804636585 | -16.3016851832542 |  0.128514431449465 |  -0.00466585584299214
+   20 | 0.264046440414355 | 2020.20695477351 | 0.542178764477021 | 22.6607426174329 |  0.0374339483678341 | 1079_IEO_DIS_MD.mp3 | 0.00493146199733019 |    0.629113089544168 | -14.4081904462415 |  0.145537918106021 |  -0.00393288661193325
+   21 | 0.282351899237076 | 1377.98584370453 | 0.706669487920231 | 17.3251333470984 | 0.00741237727925181 | 1034_IOM_FEA_XX.mp3 |  0.0043532270938158 |   0.0266343588691128 | -15.0412292153323 |  0.113110301791944 |  -0.00163069268624319
+   22 | 0.275654088619752 | 1424.36254582477 | 0.598997972666377 | 20.5582363769067 |  0.0109241688624024 | 1038_IWL_DIS_XX.mp3 | 0.00406918302178383 |   0.0427914045282562 | -15.0594272881444 |  0.137923523825079 |  -0.00458982607893884
+   23 | 0.272002943615996 | 1454.99085933287 | 0.574955351414643 | 22.2894829518242 |  0.0275940969586372 | 1015_IOM_HAP_XX.mp3 | 0.00422211131080985 |    0.334226919552461 | -13.9311991871278 | 0.0934767482497769 |   -0.0125509099489592
+features=# SELECT audio.*, emotions.emotion
+FROM audio
+INNER JOIN emotions
+ON audio.filename = emotions.filename;
+  id  |       cens        |     centoid      |      chroma       |     contrast     |       energy        |    filename     |      flatness       |       melspec        |       mfcc        |       tempo        |        tonnetz        |  emotion  
+------+-------------------+------------------+-------------------+------------------+---------------------+-----------------+---------------------+----------------------+-------------------+--------------------+-----------------------+-----------
+    0 | 0.279777711806424 | 1669.24159594252 | 0.673603858500592 | 21.5729497844779 |  0.0203671548515558 | 1001_DFA_ANG_XX | 0.00533320847898722 |    0.219329774670671 | -17.2144606842778 | 0.0714224325206525 |  -0.00629380700663203 | A
+    1 |  0.27191426898043 |  1582.2116895626 | 0.646161068595392 | 17.7313658919327 | 0.00973675213754177 | 1036_IWW_SAD_XX | 0.00714558269828558 |   0.0441114246901398 | -14.6689467947399 |  0.103545852669229 |   -0.0069172867778338 | F
+    2 | 0.273672856463257 |  1400.6790318937 | 0.632570443294699 | 18.4394085318731 | 0.00623393291607499 | 1023_IWW_SAD_XX | 0.00348874344490469 |   0.0132211183783769 | -15.4084848650081 |  0.133960284552976 |   -0.0119882721702322 | N
+    3 | 0.271936031247591 | 1446.48901235764 | 0.628540255332211 | 18.9924875674436 | 0.00815130863338709 | 1018_TIE_FEA_XX | 0.00286585884168744 |   0.0284244263184661 | -15.1547445235972 |  0.125930175356076 |  -0.00831811319208134 | S
+    4 | 0.281903977101344 | 1537.72827429673 | 0.614400479819946 | 20.8215965111298 |  0.0532167479395866 | 1039_TIE_HAP_XX | 0.00335663417354226 |     1.72976239467337 | -13.0924380071903 |  0.071908136869843 |  -0.00551865680894347 | H
+    5 | 0.280795083829829 | 1633.96748631768 | 0.624506423920551 | 19.0085538978656 |  0.0150185003876686 | 1079_ITH_ANG_XX | 0.00711559876799583 |    0.113535602572142 | -14.5635643234173 | 0.0836369382741585 |   -0.0020117362099615 | D
+    6 | 0.282129825439379 | 1389.46576063599 | 0.686473970603097 | 17.3025218045782 | 0.00545780081301928 | 1031_IWW_FEA_XX | 0.00420121010392904 |  0.00969678548834477 | -14.9625108552356 |  0.104024982011817 |  -0.00760317428954599 | F:N
+    7 | 0.279477071792197 | 1940.00491978274 | 0.669053213651119 | 17.7279463190796 | 0.00597455725073814 | 1024_IWW_FEA_XX |  0.0155060989782214 |    0.011523062140985 | -15.6557722595081 |  0.107722557918071 |   0.00224850719112506 | F
+    8 | 0.275246874083286 | 1626.83326793486 | 0.558378365965367 | 20.0416445047398 |  0.0107066547498107 | 1010_IWW_HAP_XX | 0.00320056825876236 |   0.0481303800025282 | -15.8886189552607 |  0.100875574661676 |   0.00565487447287542 | H
+    9 |   0.2790650516668 | 1792.48782507237 | 0.658182576570574 | 20.8637300026034 | 0.00709285214543343 | 1005_IWW_HAP_XX | 0.00553864846006036 |   0.0190714578368288 | -17.9773100860227 | 0.0991447122250186 |   -0.0165224205550187 | H:N
+   10 |  0.28289600786586 | 1739.67651970742 | 0.745118051320628 | 18.6509976491782 | 0.00322551559656858 | 1088_WSI_FEA_XX |  0.0100571662187576 |  0.00290185524180164 | -16.4511799687821 |   0.12334406328024 |   -0.0101732662665579 | N:S
+   11 | 0.276601581479969 | 1819.54259315269 | 0.702969473809613 | 19.3818063528006 | 0.00618947995826602 | 1088_DFA_FEA_XX |  0.0107211414724588 |   0.0224199869521284 | -15.9185449088012 |   0.15342176275268 |   -0.0125660123563591 | N
+   12 | 0.279868500509457 | 1418.13465567237 | 0.623199433664381 | 18.6575139485432 |  0.0047175083309412 | 1028_TIE_NEU_XX | 0.00311031332239509 |  0.00628222481691377 | -15.7409522758242 |  0.149435852273274 |   -0.0147340238931069 | N
+   13 | 0.273501695177263 | 1657.65698575142 | 0.632870978751682 | 19.5182976878379 |  0.0100573087111115 | 1014_IWW_NEU_XX | 0.00679047172889113 |   0.0353453845733199 | -14.7052968721792 |  0.121869530518555 |   -0.0047466341262059 | N
+   14 | 0.281748894696843 | 1567.24733099917 |  0.66972668038072 | 20.3300515114626 | 0.00818899087607861 | 1001_IWW_NEU_XX | 0.00440576439723372 |   0.0263742655862101 | -17.8649949568073 |  0.107406390698193 |  -0.00172169419760612 | N
+   15 | 0.279287653266865 | 1714.78806315856 | 0.640036475244894 | 20.4194923376527 |  0.0191923566162586 | 1056_IWW_ANG_XX | 0.00617970153689385 |    0.157287388233623 |  -14.588174204413 | 0.0758633089362965 |  -0.00630259723184254 | D
+   16 | 0.269551973718645 | 1654.90518501966 | 0.540768876088126 | 20.2583982622566 |  0.0170957446098328 | 1043_IWW_ANG_XX | 0.00725560635328293 |    0.106419373338544 | -14.6145657074539 | 0.0964432923477222 |   -0.0130166561435662 | D
+   17 | 0.280654421498253 | 1268.60261397443 | 0.683045517409296 | 17.8978191188403 | 0.00520150549709797 | 1026_IOM_SAD_XX | 0.00250309379771352 |   0.0101016428952405 | -15.2312483208731 |  0.137626394570018 |   -0.0165915735168794 | S
+   18 | 0.270593544736562 | 1301.26840714605 | 0.643302720363518 | 18.5854423950587 | 0.00622420571744442 | 1033_IOM_SAD_XX | 0.00305439345538616 |   0.0149799955850149 | -15.0715254604544 |  0.134654057230064 |   -0.0164116921044975 | N:S
+   19 | 0.258862276619466 | 1379.61291440765 | 0.567416241401726 |  18.726025723719 |  0.0128878159448504 | 1021_IOM_FEA_XX | 0.00361576513387263 |   0.0838373804636585 | -16.3016851832542 |  0.128514431449465 |  -0.00466585584299214 | N
+   20 | 0.264046440414355 | 2020.20695477351 | 0.542178764477021 | 22.6607426174329 |  0.0374339483678341 | 1079_IEO_DIS_MD | 0.00493146199733019 |    0.629113089544168 | -14.4081904462415 |  0.145537918106021 |  -0.00393288661193325 | N
+   21 | 0.282351899237076 | 1377.98584370453 | 0.706669487920231 | 17.3251333470984 | 0.00741237727925181 | 1034_IOM_FEA_XX |  0.0043532270938158 |   0.0266343588691128 | -15.0412292153323 |  0.113110301791944 |  -0.00163069268624319 | N
+   22 | 0.275654088619752 | 1424.36254582477 | 0.598997972666377 | 20.5582363769067 |  0.0109241688624024 | 1038_IWL_DIS_XX | 0.00406918302178383 |   0.0427914045282562 | -15.0594272881444 |  0.137923523825079 |  -0.00458982607893884 | D
+   23 | 0.272002943615996 | 1454.99085933287 | 0.574955351414643 | 22.2894829518242 |  0.0275940969586372 | 1015_IOM_HAP_XX | 0.00422211131080985 |    0.334226919552461 | -13.9311991871278 | 0.0934767482497768 |   -0.0125509099489592 | H
+features=# CREATE TABLE audio_final (
+features(# id int,
+features(# cens float,
+features(# centroid float,
+features(# chroma float,
+features(# contrast float,
+features(# energy float,
+features(# filename varchar(255),
+features(# melspec float,
+features(# mfcc float,
+features(# tempo float,
+features(# tonnetz float,
+features(# actor int
+features(# );
+CREATE TABLE
+features=# copy audio_final FROM '/Users/cmeaton/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/features_data.csv' WITH DELIMITER ',' CSV HEADER;
+ERROR:  extra data after last expected column
+CONTEXT:  COPY audio_final, line 2: "0,0.279777711806424,1669.241595942522,0.6736038585005921,21.57294978447793,0.020367154851555824,1001..."
+features=# CREATE TABLE audio_final (                                               
+id int,                                                           
+cens float,
+centroid float,
+chroma float,
+contrast float,
+energy float,
+filename varchar(255),
+melspec float,
+mfcc float,
+tempo float,
+tonnetz float,
+actor int
+);
+ERROR:  relation "audio_final" already exists
+features=# CREATE TABLE audio_final (
+id int,
+cens float,
+centroid float,
+chroma float,
+contrast float,
+energy float,
+filename varchar(255), flatness float,
+melspec float,
+mfcc float,
+tempo float,
+tonnetz float,
+actor int
+);
+ERROR:  relation "audio_final" already exists
+features=# CREATE TABLE audio_fin (
+id int,
+cens float,
+centroid float,
+chroma float,
+contrast float,
+energy float,
+filename varchar(255), flatness float,
+melspec float,
+mfcc float,
+tempo float,
+tonnetz float,
+actor int
+);
+CREATE TABLE
+features=# copy audio_fin FROM '/Users/cmeaton/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/features_data.csv' WITH DELIMITER ',' CSV HEADER;
+COPY 7837
+features=# SELECT * FROM audio_fin;
+  id  |       cens        |     centroid     |      chroma       |     contrast     |       energy        |    filename     |      flatness       |       melspec        |       mfcc        |       tempo        |        tonnetz        | actor 
+------+-------------------+------------------+-------------------+------------------+---------------------+-----------------+---------------------+----------------------+-------------------+--------------------+-----------------------+-------
+    0 | 0.279777711806424 | 1669.24159594252 | 0.673603858500592 | 21.5729497844779 |  0.0203671548515558 | 1001_DFA_ANG_XX | 0.00533320847898722 |    0.219329774670671 | -17.2144606842778 | 0.0714224325206525 |  -0.00629380700663203 |  1001
+    1 |  0.27191426898043 |  1582.2116895626 | 0.646161068595392 | 17.7313658919327 | 0.00973675213754177 | 1036_IWW_SAD_XX | 0.00714558269828558 |   0.0441114246901398 | -14.6689467947399 |  0.103545852669229 |   -0.0069172867778338 |  1036
+    2 | 0.273672856463257 |  1400.6790318937 | 0.632570443294699 | 18.4394085318731 | 0.00623393291607499 | 1023_IWW_SAD_XX | 0.00348874344490469 |   0.0132211183783769 | -15.4084848650081 |  0.133960284552976 |   -0.0119882721702322 |  1023
+    3 | 0.271936031247591 | 1446.48901235764 | 0.628540255332211 | 18.9924875674436 | 0.00815130863338709 | 1018_TIE_FEA_XX | 0.00286585884168744 |   0.0284244263184661 | -15.1547445235972 |  0.125930175356076 |  -0.00831811319208134 |  1018
+    4 | 0.281903977101344 | 1537.72827429673 | 0.614400479819946 | 20.8215965111298 |  0.0532167479395866 | 1039_TIE_HAP_XX | 0.00335663417354226 |     1.72976239467337 | -13.0924380071903 |  0.071908136869843 |  -0.00551865680894347 |  1039
+    5 | 0.280795083829829 | 1633.96748631768 | 0.624506423920551 | 19.0085538978656 |  0.0150185003876686 | 1079_ITH_ANG_XX | 0.00711559876799583 |    0.113535602572142 | -14.5635643234173 | 0.0836369382741585 |   -0.0020117362099615 |  1079
+    6 | 0.282129825439379 | 1389.46576063599 | 0.686473970603097 | 17.3025218045782 | 0.00545780081301928 | 1031_IWW_FEA_XX | 0.00420121010392904 |  0.00969678548834477 | -14.9625108552356 |  0.104024982011817 |  -0.00760317428954599 |  1031
+    7 | 0.279477071792197 | 1940.00491978274 | 0.669053213651119 | 17.7279463190796 | 0.00597455725073814 | 1024_IWW_FEA_XX |  0.0155060989782214 |    0.011523062140985 | -15.6557722595081 |  0.107722557918071 |   0.00224850719112506 |  1024
+    8 | 0.275246874083286 | 1626.83326793486 | 0.558378365965367 | 20.0416445047398 |  0.0107066547498107 | 1010_IWW_HAP_XX | 0.00320056825876236 |   0.0481303800025282 | -15.8886189552607 |  0.100875574661676 |   0.00565487447287542 |  1010
+    9 |   0.2790650516668 | 1792.48782507237 | 0.658182576570574 | 20.8637300026034 | 0.00709285214543343 | 1005_IWW_HAP_XX | 0.00553864846006036 |   0.0190714578368288 | -17.9773100860227 | 0.0991447122250186 |   -0.0165224205550187 |  1005
+   10 |  0.28289600786586 | 1739.67651970742 | 0.745118051320628 | 18.6509976491782 | 0.00322551559656858 | 1088_WSI_FEA_XX |  0.0100571662187576 |  0.00290185524180164 | -16.4511799687821 |   0.12334406328024 |   -0.0101732662665579 |  1088
+   11 | 0.276601581479969 | 1819.54259315269 | 0.702969473809613 | 19.3818063528006 | 0.00618947995826602 | 1088_DFA_FEA_XX |  0.0107211414724588 |   0.0224199869521284 | -15.9185449088012 |   0.15342176275268 |   -0.0125660123563591 |  1088
+   12 | 0.279868500509457 | 1418.13465567237 | 0.623199433664381 | 18.6575139485432 |  0.0047175083309412 | 1028_TIE_NEU_XX | 0.00311031332239509 |  0.00628222481691377 | -15.7409522758242 |  0.149435852273274 |   -0.0147340238931069 |  1028
+   13 | 0.273501695177263 | 1657.65698575142 | 0.632870978751682 | 19.5182976878379 |  0.0100573087111115 | 1014_IWW_NEU_XX | 0.00679047172889113 |   0.0353453845733199 | -14.7052968721792 |  0.121869530518555 |   -0.0047466341262059 |  1014
+   14 | 0.281748894696843 | 1567.24733099917 |  0.66972668038072 | 20.3300515114626 | 0.00818899087607861 | 1001_IWW_NEU_XX | 0.00440576439723372 |   0.0263742655862101 | -17.8649949568073 |  0.107406390698193 |  -0.00172169419760612 |  1001
+   15 | 0.279287653266865 | 1714.78806315856 | 0.640036475244894 | 20.4194923376527 |  0.0features=# SELECT audio.*, emotions.emotion                                   
+FROM audio
+INNER JOIN emotions
+ON audio.filename = emotions.filename;
+  id  |       cens        |     centoid      |      chroma       |     contrast     |       energy        |    filename     |      flatness       |       melspec        |       mfcc        |       tempo        |        tonnetz        |  emotion  
+------+-------------------+------------------+-------------------+------------------+---------------------+-----------------+---------------------+----------------------+-------------------+--------------------+-----------------------+-----------
+    0 | 0.279777711806424 | 1669.24159594252 | 0.673603858500592 | 21.5729497844779 |  0.0203671548515558 | 1001_DFA_ANG_XX | 0.00533320847898722 |    0.219329774670671 | -17.2144606842778 | 0.0714224325206525 |  -0.00629380700663203 | A
+    1 |  0.27191426898043 |  1582.2116895626 | 0.646161068595392 | 17.7313658919327 | 0.00973675213754177 | 1036_IWW_SAD_XX | 0.00714558269828558 |   0.0441114246901398 | -14.6689467947399 |  0.103545852669229 |   -0.0069172867778338 | F
+    2 | 0.273672856463257 |  1400.6790318937 | 0.632570443294699 | 18.4394085318731 | 0.00623393291607499 | 1023_IWW_SAD_XX | 0.00348874344490469 |   0.0132211183783769 | -15.4084848650081 |  0.133960284552976 |   -0.0119882721702322 | N
+    3 | 0.271936031247591 | 1446.48901235764 | 0.628540255332211 | 18.9924875674436 | 0.00815130863338709 | 1018_TIE_FEA_XX | 0.00286585884168744 |   0.0284244263184661 | -15.1547445235972 |  0.125930175356076 |  -0.00831811319208134 | S
+    4 | 0.281903977101344 | 1537.72827429673 | 0.614400479819946 | 20.8215965111298 |  0.0532167479395866 | 1039_TIE_HAP_XX | 0.00335663417354226 |     1.72976239467337 | -13.0924380071903 |  0.071908136869843 |  -0.00551865680894347 | H
+    5 | 0.280795083829829 | 1633.96748631768 | 0.624506423920551 | 19.0085538978656 |  0.0150185003876686 | 1079_ITH_ANG_XX | 0.00711559876799583 |    0.113535602572142 | -14.5635643234173 | 0.0836369382741585 |   -0.0020117362099615 | D
+    6 | 0.282129825439379 | 1389.46576063599 | 0.686473970603097 | 17.3025218045782 | 0.00545780081301928 | 1031_IWW_FEA_XX | 0.00420121010392904 |  0.00969678548834477 | -14.9625108552356 |  0.104024982011817 |  -0.00760317428954599 | F:N
+    7 | 0.279477071792197 | 1940.00491978274 | 0.669053213651119 | 17.7279463190796 | 0.00597455725073814 | 1024_IWW_FEA_XX |  0.0155060989782214 |    0.011523062140985 | -15.6557722595081 |  0.107722557918071 |   0.00224850719112506 | F
+    8 | 0.275246874083286 | 1626.83326793486 | 0.558378365965367 | 20.0416445047398 |  0.0107066547498107 | 1010_IWW_HAP_XX | 0.00320056825876236 |   0.0481303800025282 | -15.8886189552607 |  0.100875574661676 |   0.00565487447287542 | H
+    9 |   0.2790650516668 | 1792.48782507237 | 0.658182576570574 | 20.8637300026034 | 0.00709285214543343 | 1005_IWW_HAP_XX | 0.00553864846006036 |   0.0190714578368288 | -17.9773100860227 | 0.0991447122250186 |   -0.0165224205550187 | H:N
+   10 |  0.28289600786586 | 1739.67651970742 | 0.745118051320628 | 18.6509976491782 | 0.00322551559656858 | 1088_WSI_FEA_XX |  0.0100571662187576 |  0.00290185524180164 | -16.4511799687821 |   0.12334406328024 |   -0.0101732662665579 | N:S
+   11 | 0.276601581479969 | 1819.54259315269 | 0.702969473809613 | 19.3818063528006 | 0.00618947995826602 | 1088_DFA_FEA_XX |  0.0107211414724588 |   0.0224199869521284 | -15.9185449088012 |   0.15342176275268 |   -0.0125660123563591 | N
+   12 | 0.279868500509457 | 1418.13465567237 | 0.623199433664381 | 18.6575139485432 |  0.0047175083309412 | 1028_TIE_NEU_XX | 0.00311031332239509 |  0.00628222481691377 | -15.7409522758242 |  0.149435852273274 |   -0.0147340238931069 | N
+   13 | 0.273501695177263 | 1657.65698575142 | 0.632870978751682 | 19.5182976878379 |  0.0100573087111115 | 1014_IWW_NEU_XX | 0.00679047172889113 |   0.0353453845733199 | -14.7052968721792 |  0.121869530518555 |   -0.0047466341262059 | N
+   14 | 0.281748894696843 | 1567.24733099917 |  0.66972668038072 | 20.3300515114626 | 0.00818899087607861 | 1001_IWW_NEU_XX | 0.00440576439723372 |   0.0263742655862101 | -17.8649949568073 |  0.107406390698193 |  -0.00172169419760612 | N
+   15 | 0.279287653266865 | 1714.78806315856 | 0.640036475244894 | 20.4194923376527 |  0.0features=# CREATE TABLE new_table AS SELECT audio.*, emotions.emotion
+FROM audio
+INNER JOIN emotions
+ON audio.filename = emotions.filename;
+SELECT 7837
+features=# SELECT * FROM new_table;
+  id  |       cens        |     centoid      |      chroma       |     contrast     |       energy        |    filename     |      flatness       |       melspec        |       mfcc        |       tempo        |        tonnetz        |  emotion  
+------+-------------------+------------------+-------------------+------------------+---------------------+-----------------+---------------------+----------------------+-------------------+--------------------+-----------------------+-----------
+    0 | 0.279777711806424 | 1669.24159594252 | 0.673603858500592 | 21.5729497844779 |  0.0203671548515558 | 1001_DFA_ANG_XX | 0.00533320847898722 |    0.219329774670671 | -17.2144606842778 | 0.0714224325206525 |  -0.00629380700663203 | A
+    1 |  0.27191426898043 |  1582.2116895626 | 0.646161068595392 | 17.7313658919327 | 0.00973675213754177 | 1036_IWW_SAD_XX | 0.00714558269828558 |   0.0441114246901398 | -14.6689467947399 |  0.103545852669229 |   -0.0069172867778338 | F
+    2 | 0.273672856463257 |  1400.6790318937 | 0.632570443294699 | 18.4394085318731 | 0.00623393291607499 | 1023_IWW_SAD_XX | 0.00348874344490469 |   0.0132211183783769 | -15.4084848650081 |  0.133960284552976 |   -0.0119882721702322 | N
+    3 | 0.271936031247591 | 1446.48901235764 | 0.628540255332211 | 18.9924875674436 | 0.00815130863338709 | 1018_TIE_FEA_XX | 0.00286585884168744 |   0.0284244263184661 | -15.1547445235972 |  0.125930175356076 |  -0.00831811319208134 | S
+    4 | 0.281903977101344 | 1537.72827429673 | 0.614400479819946 | 20.8215965111298 |  0.0532167479395866 | 1039_TIE_HAP_XX | 0.00335663417354226 |     1.72976239467337 | -13.0924380071903 |  0.071908136869843 |  -0.00551865680894347 | H
+    5 | 0.280795083829829 | 1633.96748631768 | 0.624506423920551 | 19.0085538978656 |  0.0150185003876686 | 1079_ITH_ANG_XX | 0.00711559876799583 |    0.113535602572142 | -14.5635643234173 | 0.0836369382741585 |   -0.0020117362099615 | D
+    6 | 0.282129825439379 | 1389.46576063599 | 0.686473970603097 | 17.3025218045782 | 0.00545780081301928 | 1031_IWW_FEA_XX | 0.00420121010392904 |  0.00969678548834477 | -14.9625108552356 |  0.104024982011817 |  -0.00760317428954599 | F:N
+    7 | 0.279477071792197 | 1940.00491978274 | 0.669053213651119 | 17.7279463190796 | 0.00597455725073814 | 1024_IWW_FEA_XX |  0.0155060989782214 |    0.011523062140985 | -15.6557722595081 |  0.107722557918071 |   0.00224850719112506 | F
+    8 | 0.275246874083286 | 1626.83326793486 | 0.558378365965367 | 20.0416445047398 |  0.0107066547498107 | 1010_IWW_HAP_XX | 0.00320056825876236 |   0.0481303800025282 | -15.8886189552607 |  0.100875574661676 |   0.00565487447287542 | H
+    9 |   0.2790650516668 | 1792.48782507237 | 0.658182576570574 | 20.8637300026034 | 0.00709285214543343 | 1005_IWW_HAP_XX | 0.00553864846006036 |   0.0190714578368288 | -17.9773100860227 | 0.0991447122250186 |   -0.0165224205550187 | H:N
+   10 |  0.28289600786586 | 1739.67651970742 | 0.745118051320628 | 18.6509976491782 | 0.00322551559656858 | 1088_WSI_FEA_XX |  0.0100571662187576 |  0.00290185524180164 | -16.4511799687821 |   0.12334406328024 |   -0.0101732662665579 | N:S
+   11 | 0.276601581479969 | 1819.54259315269 | 0.702969473809613 | 19.3818063528006 | 0.00618947995826602 | 1088_DFA_FEA_XX |  0.0107211414724588 |   0.0224199869521284 | -15.9185449088012 |   0.15342176275268 |   -0.0125660123563591 | N
+   12 | 0.279868500509457 | 1418.13465567237 | 0.623199433664381 | 18.6575139485432 |  0.0047175083309412 | 1028_TIE_NEU_XX | 0.00311031332239509 |  0.00628222481691377 | -15.7409522758242 |  0.149435852273274 |   -0.0147340238931069 | N
+   13 | 0.273501695177263 | 1657.65698575142 | 0.632870978751682 | 19.5182976878379 |  0.0100573087111115 | 1014_IWW_NEU_XX | 0.00679047172889113 |   0.0353453845733199 | -14.7052968721792 |  0.121869530518555 |   -0.0047466341262059 | N
+   14 | 0.281748894696843 | 1567.24733099917 |  0.66972668038072 | 20.3300515114626 | 0.00818899087607861 | 1001_IWW_NEU_XX | 0.00440576439723372 |   0.0263742655862101 | -17.8649949568073 |  0.107406390698193 |  -0.00172169419760612 | N
+   15 | 0.279287653266865 | 1714.78806315856 | 0.640036475244894 | 20.4194923376527 |  0.0features=# SELECT * FROM demographics;
+ERROR:  relation "demographics" does not exist
+LINE 1: SELECT * FROM demographics;
+                      ^
+features=# SELECT * FROM demo;
+  id  | age |  sex   |       race       |  ethinicity  
+------+-----+--------+------------------+--------------
+ 1001 |  51 | Male   | Caucasian        | Not Hispanic
+ 1002 |  21 | Female | Caucasian        | Not Hispanic
+ 1003 |  21 | Female | Caucasian        | Not Hispanic
+ 1004 |  42 | Female | Caucasian        | Not Hispanic
+ 1005 |  29 | Male   | African American | Not Hispanic
+ 1006 |  58 | Female | Caucasian        | Not Hispanic
+ 1007 |  38 | Female | African American | Not Hispanic
+ 1008 |  46 | Female | Caucasian        | Not Hispanic
+ 1009 |  24 | Female | Caucasian        | Not Hispanic
+ 1010 |  27 | Female | Caucasian        | Not Hispanic
+ 1011 |  32 | Male   | Caucasian        | Not Hispanic
+ 1012 |  23 | Female | Caucasian        | Not Hispanic
+ 1013 |  22 | Female | Caucasian        | Hispanic
+ 1014 |  24 | Male   | Caucasian        | Not Hispanic
+ 1015 |  32 | Male   | African American | Not Hispanic
+ 1016 |  61 | Male   | Caucasian        | Not Hispanic
+ 1017 |  42 | Male   | Caucasian        | Not Hispanic
+ 1018 |  25 | Female | Caucasian        | Hispanic
+ 1019 |  29 | Male   | Asian            | Not Hispanic
+ 1020 |  61 | Female | Caucasian        | Not Hispanic
+ 1021 |  30 | Female | Caucasian        | Not Hispanic
+ 1022 |  22 | Male   | Caucasian        | Not Hispanic
+ 1023 |  22 | Male   | Caucasian        | Not Hispanic
+ 1024 |  59 | Female | Caucasian        | Not Hispanic
+ 1025 |  48 | Female | Caucasian        | Not Hispanic
+ 1026 |  33 | Male   | Caucasian        | Not Hispanic
+ 1027 |  44 | Male   | Caucasian        | Not Hispanic
+ 1028 |  57 | Female | Caucasian        | Not Hispanic
+ 1029 |  33 | Female | African American | Not Hispanic
+ 1030 |  42 | Female | African American | Not Hispanic
+ 1031 |  31 | Male   | Caucasian        | Hispanic
+ 1032 |  30 | Male   | African American | Not Hispanic
+ 1033 |  31 | Male   | Caucasian        | Not Hispanic
+ 1034 |  74 | Male   | Caucasian        | Not Hispanic
+ 1035 |  48 | Male   | Caucasian        | Not Hispanic
+ 1036 |  49 | Male   | African American | Not Hispanic
+ 1037 |  45 | Female | Caucasian        | Not Hispanic
+ 1038 |  21 | Male   | African American | Not Hispanic
+ 1039 |  51 | Male   | African American | Not Hispanic
+ 1040 |  42 | Male   | Caucasian        | Not Hispanic
+ 1041 |  42 | Male   | Caucasian        | Not Hispanic
+ 1042 |  37 | Male   | African American | Not Hispanic
+ 1043 |  25 | Female | Caucasian        | Hispanic
+ 1044 |  40 | Male   | Caucasian        | Not Hispanic
+ 1045 |  22 | Male   | Asian            | Not Hispanic
+ 1046 |  22 | Female | Caucasian        | Hispanic
+ 1047 |  22 | Female | Unknown          | Hispanic
+ 1048 |  38 | Male   | Caucasian        | Hispanic
+ 1049 |  25 | Female | Caucasian        | Hispanic
+ 1050 |  62 | Male   | African American | Not Hispanic
+features=# CREATE TABLE new_table AS SELECT audio.*, emotions.emotion
+FROM audio
+INNER JOIN emotions
+ON audio.filename = emo;;
+ERROR:  column "emo" does not exist
+LINE 4: ON audio.filename = emo;
+                            ^
+features=# SELECT new_table.*, demo.*
+features-# FROM new_table
+features-# INNER JOIN demo
+features-# ON new_table.actor = demo.id;
+ERROR:  column new_table.actor does not exist
+LINE 4: ON new_table.actor = demo.id;
+           ^
+features=# CREATE TABLE new_data AS SELECT audio_fin.*, emotions.emotion
+FROM audio_fin
+INNER JOIN emotions
+ON audio_fin.filename = emotions.filename;
+SELECT 7837
+features=# SELECT * FROM new_data;
+  id  |       cens        |     centroid     |      chroma       |     contrast     |       energy        |    filename     |      flatness       |       melspec        |       mfcc        |       tempo        |        tonnetz        | actor |  emotion  
+------+-------------------+------------------+-------------------+------------------+---------------------+-----------------+---------------------+----------------------+-------------------+--------------------+-----------------------+-------+-----------
+    0 | 0.279777711806424 | 1669.24159594252 | 0.673603858500592 | 21.5729497844779 |  0.0203671548515558 | 1001_DFA_ANG_XX | 0.00533320847898722 |    0.219329774670671 | -17.2144606842778 | 0.0714224325206525 |  -0.00629380700663203 |  1001 | A
+    1 |  0.27191426898043 |  1582.2116895626 | 0.646161068595392 | 17.7313658919327 | 0.00973675213754177 | 1036_IWW_SAD_XX | 0.00714558269828558 |   0.0441114246901398 | -14.6689467947399 |  0.103545852669229 |   -0.0069172867778338 |  1036 | F
+    2 | 0.273672856463257 |  1400.6790318937 | 0.632570443294699 | 18.4394085318731 | 0.00623393291607499 | 1023_IWW_SAD_XX | 0.00348874344490469 |   0.0132211183783769 | -15.4084848650081 |  0.133960284552976 |   -0.0119882721702322 |  1023 | N
+    3 | 0.271936031247591 | 1446.48901235764 | 0.628540255332211 | 18.9924875674436 | 0.00815130863338709 | 1018_TIE_FEA_XX | 0.00286585884168744 |   0.0284244263184661 | -15.1547445235972 |  0.125930175356076 |  -0.00831811319208134 |  1018 | S
+    4 | 0.281903977101344 | 1537.72827429673 | 0.614400479819946 | 20.8215965111298 |  0.0532167479395866 | 1039_TIE_HAP_XX | 0.00335663417354226 |     1.72976239467337 | -13.0924380071903 |  0.071908136869843 |  -0.00551865680894347 |  1039 | H
+    5 | 0.280795083829829 | 1633.96748631768 | 0.624506423920551 | 19.0085538978656 |  0.0150185003876686 | 1079_ITH_ANG_XX | 0.00711559876799583 |    0.113535602572142 | -14.5635643234173 | 0.0836369382741585 |   -0.0020117362099615 |  1079 | D
+    6 | 0.282129825439379 | 1389.46576063599 | 0.686473970603097 | 17.3025218045782 | 0.00545780081301928 | 1031_IWW_FEA_XX | 0.00420121010392904 |  0.00969678548834477 | -14.9625108552356 |  0.104024982011817 |  -0.00760317428954599 |  1031 | F:N
+    7 | 0.279477071792197 | 1940.00491978274 | 0.669053213651119 | 17.7279463190796 | 0.00597455725073814 | 1024_IWW_FEA_XX |  0.0155060989782214 |    0.011523062140985 | -15.6557722595081 |  0.107722557918071 |   0.00224850719112506 |  1024 | F
+    8 | 0.275246874083286 | 1626.83326793486 | 0.558378365965367 | 20.0416445047398 |  0.0107066547498107 | 1010_IWW_HAP_XX | 0.00320056825876236 |   0.0481303800025282 | -15.8886189552607 |  0.100875574661676 |   0.00565487447287542 |  1010 | H
+    9 |   0.2790650516668 | 1792.48782507237 | 0.658182576570574 | 20.8637300026034 | 0.00709285214543343 | 1005_IWW_HAP_XX | 0.00553864846006036 |   0.0190714578368288 | -17.9773100860227 | 0.0991447122250186 |   -0.0165224205550187 |  1005 | H:N
+   10 |  0.28289600786586 | 1739.67651970742 | 0.745118051320628 | 18.6509976491782 | 0.00322551559656858 | 1088_WSI_FEA_XX |  0.0100571662187576 |  0.00290185524180164 | -16.4511799687821 |   0.12334406328024 |   -0.0101732662665579 |  1088 | N:S
+   11 | 0.276601581479969 | 1819.54259315269 | 0.702969473809613 | 19.3818063528006 | 0.00618947995826602 | 1088_DFA_FEA_XX |  0.0107211414724588 |   0.0224199869521284 | -15.9185449088012 |   0.15342176275268 |   -0.0125660123563591 |  1088 | N
+   12 | 0.279868500509457 | 1418.13465567237 | 0.623199433664381 | 18.6575139485432 |  0.0047175083309412 | 1028_TIE_NEU_XX | 0.00311031332239509 |  0.00628222481691377 | -15.7409522758242 |  0.149435852273274 |   -0.0147340238931069 |  1028 | N
+   13 | 0.273501695177263 | 1657.65698575142 | 0.632870978751682 | 19.5182976878379 |  0.0100573087111115 | 1014_IWW_NEU_XX | 0.00679047172889113 |   0.0353453845733199 | -14.7052968721792 |  0.121869530518555 |   -0.0047466341262059 |  1014 | N
+   14 | 0.281748894696843 | 1567.24733099917 |  0.66972668038072 | 20.3300515114626 | 0.00818899087607861 | 1001_IWW_NEU_XX | 0.00440576439723372 |   0.0263742655862101 | -17.8649949568073 |  0.107406390698193 |  -0.00172169419760612 |  1001 | N
+   15 | 0.279287653266865 | 1714.78806315856 | 0.640036475244894 | 20.4194923376527 |  0.0191923566162586 | 1056_IWW_ANG_XX | 0.00617970153689385 |    0.157287388233623 |  -14.588174204413 | 0.0758633089362965 |  -0.00630259723184254 |  1056 | D
+   16 | 0.269551973718645 | 1654.90518501966 | 0.540768876088126 | 20.2583982622566 |  0.0170957446098328 | 1043_IWW_ANG_XX | 0.00725560635328293 |    0.106419373338544 | -14.6145657074539 | 0.0964432923477222 |   -0.0130166561435662 |  1043 | D
+   17 | 0.280654421498253 | 1268.60261397443 | 0.683045517409296 | 17.8978191188403 | 0.00520150549709797 | 1026_IOM_SAD_XX | 0.00250309379771352 |   0.0101016428952405 | -15.2312483208731 |  0.137626394570018 |   -0.0165915735168794 |  1026 | S
+   18 | 0.270593544736562 | 1301.26840714605 | 0.643302720363518 | 18.5854423950587 | 0.00622420571744442 | 1033_IOM_SAD_XX | 0.00305439345538616 |   0.0149799955850149 | -15.0715254604544 |  0.134654057230064 |   -0.0164116921044975 |  1033 | N:S
+   19 | 0.258862276619466 | 1379.61291440765 | 0.567416241401726 |  18.726025723719 |  0.0128878159448504 | 1021_IOM_FEA_XX | 0.00361576513387263 |   0.0838373804636585 | -16.3016851832542 |  0.128514431449465 |  -0.00466585584299214 |  1021 | N
+   20 | 0.264046440414355 | 2020.20695477351 | 0.542178764477021 | 22.6607426174329 |  0.0374339483678341 | 1079_IEO_DIS_MD | 0.00493146199733019 |    0.629113089544168 | -14.4081904462415 |  0.145537918106021 |  -0.00393288661193325 |  1079 | N
+   21 | 0.282351899237076 | 1377.98584370453 | 0.706669487920231 | 17.3251333470984 | 0.00741237727925181 | 1034_IOM_FEA_XX |  0.0043532270938158 |   0.0266343588691128 | -15.0412292153323 |  0.113110301791944 |  -0.00163069268624319 |  1034 | N
+   22 | 0.275654088619752 | 1424.36254582477 | 0.598997972666377 | 20.5582363769067 |  0.0109241688624024 | 1038_IWL_DIS_XX | 0.00406918302178383 |   0.0427914045282562 | -15.0594272881444 |  0.137923523825079 |  -0.00458982607893884 |  1038 | D
+   23 | 0.272002943615996 | 1454.99085933287 | 0.574955351414643 | 22.2894829518242 |  0.0275940969586372 | 1015_IOM_HAP_XX | 0.00422211131080985 |    0.334226919552461 | -13.9311991871278 | 0.0934767482497768 |   -0.0125509099489592 |  1015 | H
+features=# SELECT new_data.*, demo.*
+FROM new_data 
+INNER JOIN demo
+ON new_data.actor = demo.id;
+  id  |       cens        |     centroid     |      chroma       |     contrast     |       energy        |    filename     |      flatness       |       melspec        |       mfcc        |       tempo        |        tonnetz        | actor |  emotion  |  id  | age |  sex   |       race       |  ethinicity  
+------+-------------------+------------------+-------------------+------------------+---------------------+-----------------+---------------------+----------------------+-------------------+--------------------+-----------------------+-------+-----------+------+-----+--------+------------------+--------------
+    0 | 0.279777711806424 | 1669.24159594252 | 0.673603858500592 | 21.5729497844779 |  0.0203671548515558 | 1001_DFA_ANG_XX | 0.00533320847898722 |    0.219329774670671 | -17.2144606842778 | 0.0714224325206525 |  -0.00629380700663203 |  1001 | A         | 1001 |  51 | Male   | Caucasian        | Not Hispanic
+    1 |  0.27191426898043 |  1582.2116895626 | 0.646161068595392 | 17.7313658919327 | 0.00973675213754177 | 1036_IWW_SAD_XX | 0.00714558269828558 |   0.0441114246901398 | -14.6689467947399 |  0.103545852669229 |   -0.0069172867778338 |  1036 | F         | 1036 |  49 | Male   | African American | Not Hispanic
+    2 | 0.273672856463257 |  1400.6790318937 | 0.632570443294699 | 18.4394085318731 | 0.00623393291607499 | 1023_IWW_SAD_XX | 0.00348874344490469 |   0.0132211183783769 | -15.4084848650081 |  0.133960284552976 |   -0.0119882721702322 |  1023 | N         | 1023 |  22 | Male   | Caucasian        | Not Hispanic
+    3 | 0.271936031247591 | 1446.48901235764 | 0.628540255332211 | 18.9924875674436 | 0.00815130863338709 | 1018_TIE_FEA_XX | 0.00286585884168744 |   0.0284244263184661 | -15.1547445235972 |  0.125930175356076 |  -0.00831811319208134 |  1018 | S         | 1018 |  25 | Female | Caucasian        | Hispanic
+    4 | 0.281903977101344 | 1537.72827429673 | 0.614400479819946 | 20.8215965111298 |  0.0532167479395866 | 1039_TIE_HAP_XX | 0.00335663417354226 |     1.72976239467337 | -13.0924380071903 |  0.071908136869843 |  -0.00551865680894347 |  1039 | H         | 1039 |  51 | Male   | African American | Not Hispanic
+    5 | 0.280795083829829 | 1633.96748631768 | 0.624506423920551 | 19.0085538978656 |  0.0150185003876686 | 1079_ITH_ANG_XX | 0.00711559876799583 |    0.113535602572142 | -14.5635643234173 | 0.0836369382741585 |   -0.0020117362099615 |  1079 | D         | 1079 |  21 | Female | Caucasian        | Hispanic
+    6 | 0.282129825439379 | 1389.46576063599 | 0.686473970603097 | 17.3025218045782 | 0.00545780081301928 | 1031_IWW_FEA_XX | 0.00420121010392904 |  0.00969678548834477 | -14.9625108552356 |  0.104024982011817 |  -0.00760317428954599 |  1031 | F:N       | 1031 |  31 | Male   | Caucasian        | Hispanic
+    7 | 0.279477071792197 | 1940.00491978274 | 0.669053213651119 | 17.7279463190796 | 0.00597455725073814 | 1024_IWW_FEA_XX |  0.0155060989782214 |    0.011523062140985 | -15.6557722595081 |  0.107722557918071 |   0.00224850719112506 |  1024 | F         | 1024 |  59 | Female | Caucasian        | Not Hispanic
+    8 | 0.275246874083286 | 1626.83326793486 | 0.558378365965367 | 20.0416445047398 |  0.0107066547498107 | 1010_IWW_HAP_XX | 0.00320056825876236 |   0.0481303800025282 | -15.8886189552607 |  0.100875574661676 |   0.00565487447287542 |  1010 | H         | 1010 |  27 | Female | Caucasian        | Not Hispanic
+    9 |   0.2790650516668 | 1792.48782507237 | 0.658182576570574 | 20.8637300026034 | 0.00709285214543343 | 1005_IWW_HAP_XX | 0.00553864846006036 |   0.0190714578368288 | -17.9773100860227 | 0.0991447122250186 |   -0.0165224205550187 |  1005 | H:N       | 1005 |  29 | Male   | African American | Not Hispanic
+   10 |  0.28289600786586 | 1739.67651970742 | 0.745118051320628 | 18.6509976491782 | 0.00322551559656858 | 1088_WSI_FEA_XX |  0.0100571662187576 |  0.00290185524180164 | -16.4511799687821 |   0.12334406328024 |   -0.0101732662665579 |  1088 | N:S       | 1088 |  23 | Male   | African American | Not Hispanic
+   11 | 0.276601581479969 | 1819.54259315269 | 0.702969473809613 | 19.3818063528006 | 0.00618947995826602 | 1088_DFA_FEA_XX |  0.0107211414724588 |   0.0224199869521284 | -15.9185449088012 |   0.15342176275268 |   -0.0125660123563591 |  1088 | N         | 1088 |  23 | Male   | African American | Not Hispanic
+   12 | 0.279868500509457 | 1418.13465567237 | 0.623199433664381 | 18.6575139485432 |  0.0047175083309412 | 1028_TIE_NEU_XX | 0.00311031332239509 |  0.00628222481691377 | -15.7409522758242 |  0.149435852273274 |   -0.0147340238931069 |  1028 | N         | 1028 |  57 | Female | Caucasian        | Not Hispanic
+   13 | 0.273501695177263 | 1657.65698575142 | 0.632870978751682 | 19.5182976878379 |  0.0100573087111115 | 1014_IWW_NEU_XX | 0.00679047172889113 |   0.0353453845733199 | -14.7052968721792 |  0.121869530518555 |   -0.0047466341262059 |  1014 | N         | 1014 |  24 | Male   | Caucasian        | Not Hispanic
+   14 | 0.281748894696843 | 1567.24733099917 |  0.66972668038072 | 20.3300515114626 | 0.00818899087607861 | 1001_IWW_NEU_XX | 0.00440576439723372 |   0.0263742655862101 | -17.8649949568073 |  0.107406390698193 |  -0.00172169419760612 |  1001 | N         | 1001 |  51 | Male   | Caucasian        | Not Hispanic
+   15 | 0.279287653266865 | 1714.78806315856 | 0.640036475244894 | 20.4194923376527 |  0.0191923566162586 | 1056_IWW_ANG_XX | 0.00617970153689385 |    0.157287388233623 |  -14.588174204413 | 0.0758633089362965 |  -0.00630259723184254 |  1056 | D         | 1056 |  52 | Female | African American | Not Hispanic
+   16 | 0.269551973718645 | 1654.90518501966 | 0.540768876088126 | 20.2583982622566 |  0.0170957446098328 | 1043_IWW_ANG_XX | 0.00725560635328293 |    0.106419373338544 | -14.6145657074539 | 0.0964432923477222 |   -0.0130166561435662 |  1043 | D         | 1043 |  25 | Female | Caucasian        | Hispanic
+   17 | 0.280654421498253 | 1268.60261397443 | 0.683045517409296 | 17.8978191188403 | 0.00520150549709797 | 1026_IOM_SAD_XX | 0.00250309379771352 |   0.0101016428952405 | -15.2312483208731 |  0.137626394570018 |   -0.0165915735168794 |  1026 | S         | 1026 |  33 | Male   | Caucasian        | Not Hispanic
+   18 | 0.270593544736562 | 1301.26840714605 | 0.643302720363518 | 18.5854423950587 | 0.00622420571744442 | 1033_IOM_SAD_XX | 0.00305439345538616 |   0.0149799955850149 | -15.0715254604544 |  0.134654057230064 |   -0.0164116921044975 |  1033 | N:S       | 1033 |  31 | Male   | Caucasian        | Not Hispanic
+   19 | 0.258862276619466 | 1379.61291440765 | 0.567416241401726 |  18.726025723719 |  0.0128878159448504 | 1021_IOM_FEA_XX | 0.00361576513387263 |   0.0838373804636585 | -16.3016851832542 |  0.128514431449465 |  -0.00466585584299214 |  1021 | N         | 1021 |  30 | Female | Caucasian        | Not Hispanic
+   20 | 0.264046440414355 | 2020.20695477351 | 0.542178764477021 | 22.6607426174329 |  0.0374339483678341 | 1079_IEO_DIS_MD | 0.00493146199733019 |    0.629113089544168 | -14.4081904462415 |  0.145537918106021 |  -0.00393288661193325 |  1079 | N         | 1079 |  21 | Female | Caucasian        | Hispanic
+   21 | 0.282351899237076 | 1377.98584370453 | 0.706669487920231 | 17.3251333470984 | 0.00741237727925181 | 1034_IOM_FEA_XX |  0.0043532270938158 |   0.0266343588691128 | -15.0412292153323 |  0.113110301791944 |  -0.00163069268624319 |  1034 | N         | 1034 |  74 | Male   | Caucasian        | Not Hispanic
+   22 | 0.275654088619752 | 1424.36254582477 | 0.598997972666377 | 20.5582363769067 |  0.0109241688624024 | 1038_IWL_DIS_XX | 0.00406918302178383 |   0.0427914045282562 | -15.0594272881444 |  0.137923523825079 |  -0.00458982607893884 |  1038 | D         | 1038 |  21 | Male   | African American | Not Hispanic
+   23 | 0.272002943615996 | 1454.99085933287 | 0.574955351414643 | 22.2894829518242 |  0.0275940969586372 | 1015_IOM_HAP_XX | 0.00422211131080985 |    0.334226919552461 | -13.9311991871278 | 0.0934767482497768 |   -0.0125509099489592 |  1015 | H         | 1015 |  32 | Male   | African American | Not Hispanic
+   24 | 0.281002945039843 | 1775.90301981734 | 0.659611152896333 | 20.4910247610771 |  0.0347123332321644 | 1068_IEO_DIS_HI |  0.0121928099542856 |    0.773622392515925 | -12.8405172140985 |  0.101071977063243 |   -0.0045411710027582 |  1068 | A:D       | 1068 |  34 | Male   | Caucasian        | Not Hispanic
+   25 | 0.260877725130126 | 1682.05969025638 |  0.53879846728147 | 20.7848260786436 |  0.0490952841937542 | 1061_MTI_ANG_XX |  0.0090390695258975 |     1.28504965337552 |  -13.948279092782 | 0.0909964429752211 |  -0.00666642837849777 |  1061 | A         | 1061 |  51 | Female | African American | Not Hispanic
+   26 |  0.26305946308735 |  1589.3061444951 | 0.516869932702449 | 21.0345050328854 |  0.0523364469408989 | 1074_MTI_ANG_XX | 0.00561683438718319 |     1.18636336019344 | -14.2538308310906 | 0.0942891703600984 |  -0.00753113071188537 |  1074 | A         | 1074 |  31 | Female | African American | Not Hispanic
+   27 | 0.262418077287942 | 1202.61686573483 | 0.557361602470692 | 20.7153365535661 |  0.0163317937403917 | 1023_MTI_NEU_XX |  0.0025785188190639 |   0.0972783457356072 | -14.3734575253806 |  0.106291287755312 |   -0.0135633536191481 |  1023 | N         | 1023 |  22 | Male   | Caucasian        | Not Hispanic
+   28 | 0.277190043652933 | 1254.44142792135 |  0.61660429974148 | 18.1636281295522 | 0.00951957888901234 | 1036_MTI_NEU_XX | 0.00440347800031304 |   0.0331582888337427 | -14.5442791162358 |  0.110153088118157 |   -0.0100686838895595 |  1036 | N         | 1036 |  49 | Male   | African American | Not Hispanic
+   29 | 0.281345681756424 | 1505.37134840089 | 0.643451653963793 | 19.0331579179026 | 0.00766971800476313 | 1080_MTI_DIS_XX | 0.00584768038243055 |   0.0269338974438522 | -14.9634277192412 |  0.134693413821707 | -6.96055967603127e-05 |  1080 | D         | 1080 |  21 | Male   | African American | Not Hispanic
+   30 | 0.270284462965217 | 2213.45321022569 | 0.597338959769577 | 22.2034353548362 |  0.0359671823680401 | 1089_IEO_ANG_HI |  0.0140463095158339 |    0.620048197174696 | -14.5377529317588 | 0.0529880465292468 |  -0.00655052153540172 |  1089 | A         | 1089 |  24 | Female | Caucasian        | Not Hispanic
+   31 | 0.278454459759839 | 1876.79349161358 |  0.71007638952661 | 19.3259848294604 |  0.0038056771736592 | 1091_ITS_FEA_XX |  0.0098190326243639 |  0.00514918282608853 | -16.7717658687855 |  0.125901738752247 |    -0.014785578269996 |  1091 | F         | 1091 |  29 | Female | Asian            | Not Hispanic
+   32 | 0.278321851660736 | 1760.59888292824 | 0.671204871877044 | 19.0106150156938 | 0.00331171741709113 | 1084_ITS_FEA_XX | 0.00668393122032285 |    0.003507370188494 |  -17.837135662927 |  0.171691064181511 |   -0.0154877587921878 |  1084 | F:N       | 1084 |  46 | Female | Caucasian        | Not Hispanic
+   33 | 0.279969164158179 | 1359.84399106718 | 0.676631648922675 | 20.4692397271564 | 0.00781639665365219 | 1001_MTI_SAD_XX | 0.00558261852711439 |   0.0261043621465439 | -18.0576910800128 |  0.112077895278474 |  -0.00743587016785545 |  1001 | N         | 1001 |  51 | Male   | Caucasian        | Not Hispanic
+   34 | 0.282173421827767 | 1282.62705256771 | 0.653543550232344 | 18.1469854784123 | 0.00499391509220004 | 1014_MTI_SAD_XX | 0.00343110808171332 |  0.00728538179230834 | -15.6224408635501 |  0.104632519919386 |   -0.0003082015750593 |  1014 | N         | 1014 |  24 | Male   | Caucasian        | Not Hispanic
+   35 | 0.280608457196179 | 1702.05232353519 | 0.698702479769911 | 18.2337054230206 | 0.00404568575322628 | 1017_ITS_DIS_XX |  0.0086536705493927 |  0.00419433043272212 | -15.7220743557673 |  0.130037275670172 |   0.00116963390179561 |  1017 | F         | 1017 |  42 | Male   | Caucasian        | Not Hispanic
+   36 | 0.284551469707558 |  2055.8682766736 |  0.69459593330086 | 19.8080226467158 | 0.00470815366134048 | 1002_ITS_DIS_XX | 0.00806224718689919 |  0.00702315302638321 | -19.3239871826304 |   0.11710667683948 |   -0.0014889629102855 |  1002 | S         | 1002 |  21 | Female | Caucasian        | Not Hispanic
+   37 | 0.274144560553787 | 1496.71604586855 | 0.636016647451452 | 20.2590546223381 | 0.00446852017194033 | 1004_IOM_NEU_XX | 0.00456200120970607 |  0.00676719502772148 | -19.5430208596845 |  0.120079394803201 |   -0.0139949725106828 |  1004 | N         | 1004 |  42 | Female | Caucasian        | Not Hispanic
+   38 | 0.271050409236733 | 1343.34456296955 | 0.658646864393888 | 18.9905125547082 | 0.00687821162864566 | 1011_IOM_NEU_XX | 0.00292629795148969 |   0.0196931759483031 | -15.4191854136643 |  0.121682225814027 |   -0.0168102766401409 |  1011 | N         | 1011 |  32 | Male   | Caucasian        | Not Hispanic
+   39 | 0.276523367696801 | 1576.43409660652 | 0.602071480730439 | 19.6219161639897 |  0.0153932105749846 | 1046_IOM_ANG_XX | 0.00347867258824408 |   0.0945148498658361 |  -14.643345622265 | 0.0975770327630611 |  -0.00525485262268297 |  1046 | N         | 1046 |  22 | Female | Caucasian        | Hispanic
+   40 | 0.256740840829281 | 1657.90442935304 | 0.527464966712156 | 21.3386914027862 |  0.0372633300721645 | 1053_IOM_ANG_XX | 0.00339218322187662 |    0.525974734047262 | -14.4481582817444 | 0.0734588524598875 | -0.000414708731676977 |  1053 | A         | 1053 |  35 | Female | Caucasian        | Not Hispanic
+   41 | 0.277363881523498 |  1202.1652790214 | 0.591194934239435 | 19.5798743329746 |  0.0127901313826442 | 1027_MTI_HAP_XX | 0.00243477965705097 |   0.0700584748414884 | -15.6818119935427 |  0.122432605276273 |   0.00299247401731319 |  1027 | N         | 1027 |  44 | Male   | Caucasian        | Not Hispanic
+   42 | 0.278370363136276 | 1328.97130580616 | 0.662556905424448 |  17.410012253772 | 0.00827674474567175 | 1032_MTI_HAP_XX | 0.00398190366104245 |   0.0283321646539226 | -15.2947362871288 |  0.121166677718779 |   -0.0123289496968615 |  1032 | N         | 1032 |  30 | Male   | African American | Not Hispanic
+   43 | 0.272645594804797 | 1286.98696546605 | 0.608718547662615 | 18.8388044202932 | 0.00588223291561007 | 1006_MTI_FEA_XX | 0.00291468226350844 |   0.0127198587089021 | -16.1095520431989 |  0.174433604884357 | -0.000294436181595976 |  1006 | S         | 1006 |  58 | Female | Caucasian        | Not Hispanic
+   44 | 0.265512959796499 | 1367.29851999613 |  0.59283100775819 | 18.4758808357005 | 0.00558899762108922 | 1013_MTI_FEA_XX | 0.00420798175036907 |  0.00979323853912723 |  -15.772270164212 |  0.119508590427747 | -0.000538345423496371 |  1013 | S         | 1013 |  22 | Female | Caucasian        | Hispanic
+   45 | 0.280119572138852 | 2025.43701446537 | 0.709890210374001 | 18.9302415649357 | 0.00344461156055331 | 1083_ITS_SAD_XX |  0.0130348196253181 |  0.00502001608522239 | -17.8448957965061 |   0.14384816396035 |    -0.004879676928853 |  1083 | N         | 1083 |  45 | Male   | African American | Not Hispanic
+   46 |  0.28301477906611 | 2439.37952531301 | 0.681619331220398 | 17.8470262034756 | 0.00776338391005993 | 1076_TSI_HAP_XX |  0.0149569241330028 |   0.0229361667747982 | -15.3131058247495 |  0.105626610335045 |   0.00296961062153122 |  1076 | H:N       | 1076 |  25 | Female | Caucasian        | Not Hispanic
+   47 | 0.280349361633555 | 1492.30572224591 | 0.709058596439092 | 17.8449216978573 | 0.00554593978449702 | 1072_IEO_SAD_HI | 0.00515807000920177 |   0.0142598983581674 | -15.2520502573574 |  0.136970810597074 |  -0.00377736915154741 |  1072 | S         | 1072 |  33 | Female | Asian            | Not Hispanic
+   48 |  0.28389506521645 | 1530.05059394596 | 0.721060527153906 | 17.4266396897078 | 0.00423507438972592 | 1067_IEO_SAD_HI | 0.00690590683370829 |  0.00643593601760536 | -15.3052716628341 |  0.123546282217795 |  -0.00461294960371362 |  1067 | S         | 1067 |  66 | Male   | Caucasian        | Not Hispanic
+   49 | 0.278112661316526 |  2217.1091726792 | 0.641155546747385 | 18.5833972009209 | 0.00964883808046579 | 1063_TSI_HAP_XX |  0.0114993816241622 |    0.039202783397111 | -14.9304851621251 | 0.0820368092555188 |  0.000389880831917662 |  1063 | F         | 1063 |  33 | Female | African American | Not Hispanic
+   50 | 0.283173673334005 | 2313.48425954719 | 0.720483210765809 | 17.2654184260732 |  0.0119513086974621 | 1057_TSI_FEA_XX |  0.0267014726996422 |     0.10687596166256 | -14.8697316616379 |  0.113158180423244 |     -0.00181107966998 |  1057 | F         | 1057 |  25 | Male   | Caucasian        | Not Hispanic
+   51 | 0.283661380406737 | 1985.81352253433 | 0.686969586291136 | 17.7736042401018 |  0.0152349146082997 | 1042_TSI_FEA_XX |  0.0141223203390837 |    0.187555506220704 | -14.5648126409042 | 0.0980873767234334 |  -0.00226775484018945 |  1042 | N         | 1042 |  37 | Male   | African American | Not Hispanic
+   52 | 0.274475633378196 | 1678.19041982231 | 0.560152585244091 | 21.4893472731017 |  0.0192457307130098 | 1047_TAI_HAP_XX | 0.00497424090281129 |    0.137062320127353 | -14.9102504220567 |  0.080234390105262 |  -0.00634799455199713 |  1047 | H         | 1047 |  22 | Female | Unknown          | Hispanic
+   53 | 0.280722625408583 | 1537.94105468376 | 0.691025092029778 |  17.547432982285 |  0.0030456876847893 | 1063_IEO_SAD_MD | 0.00501095084473491 |  0.00230012975626861 | -14.9104606998429 |  0.105306728600324 |  -0.00151098690929398 |  1063 | N         | 1063 |  33 | Female | African American | Not Hispanic
+   54 | 0.283159993580122 | 1499.70325617369 | 0.702158255507285 | 17.3433505359256 | 0.00350485718809068 | 1076_IEO_SAD_MD | 0.00463156960904598 |  0.00364988347899083 | -15.5306289899752 |  0.121931425117449 |  -0.00562263501153562 |  1076 | N         | 1076 |  25 | Female | Caucasian        | Not Hispanic
+   55 | 0.277518398975869 | 1894.33858506372 | 0.535010173424461 | 22.2005724182797 |  0.0316625908017159 | 1052_TAI_HAP_XX |  0.0113221518695354 |    0.439929441303315 | -13.9427090400312 |  0.126901823360174 |   0.00398165848365748 |  1052 | F         | 1052 |  33 | Female | Caucasian        | Not Hispanic
+   56 | 0.279727867358766 | 1374.77670640197 | 0.655139399583384 | 16.8830230379717 |   0.004281269852072 | 1037_IWL_SAD_XX | 0.00402366323396564 |  0.00582557685468369 | -15.9887597257229 |  0.144041755246677 |  -0.00578684180633332 |  1037 | N         | 1037 |  45 | Female | Caucasian        | Not Hispanic
+   57 | 0.282069470917837 | 1642.43708190236 | 0.677010608010576 | 18.3834488964236 | 0.00649977987632155 | 1066_TAI_FEA_XX |  0.0104825692251325 |   0.0157152549335288 | -14.5357456561011 |  0.122204475079548 |  -0.00535568593131684 |  1066 | N         | 1066 |  25 | Male   | Caucasian        | Not Hispanic
+   58 |  0.27311310162517 | 1538.78488647696 | 0.634387319540958 | 18.7100738474163 |  0.0114358710125089 | 1073_TAI_FEA_XX | 0.00657552340999246 |    0.056720793686821 |  -13.897005126524 |  0.118583933852646 |  -0.00880580152103103 |  1073 | N         | 1073 |  24 | Female | African American | Hispanic
+   59 | 0.272504980328614 | 1211.91330943776 |  0.62631825128731 | 18.4757051870213 | 0.00858755689114332 | 1022_IWL_SAD_XX | 0.00273204362019896 |   0.0262233470488556 | -15.1353360646854 |  0.131515287678556 |  0.000124496565063805 |  1022 | S         | 1022 |  22 | Male   | Caucasian        | Not Hispanic
+   60 | 0.272973872131181 | 1905.25212169516 | 0.595428492225891 | 20.6089079773389 |  0.0434221848845482 | 1075_IEO_FEA_HI | 0.00681417156010866 |     1.04615769833984 | -12.7087412556615 | 0.0704430362052406 |  -0.00541358217479507 |  1075 | F         | 1075 |  40 | Female | Caucasian        | Not Hispanic
+   61 | 0.279172852440212 | 1675.44114434725 | 0.625257956586476 | 19.4881415376563 |  0.0268198866397142 | 1060_IEO_FEA_HI | 0.00551021611317992 |      0.3613667716665 | -14.3904212421286 | 0.0688642897636085 |  -0.00045336032384056 |  1060 | F         | 1060 |  28 | Female | African American | Not Hispanic
+   62 | 0.266036835199612 | 1472.05449240646 | 0.593642447226693 | 20.6831213694866 |  0.0205025710165501 | 1054_IEO_HAP_HI | 0.00395098188892007 |    0.191500150911821 | -14.2111180361923 |  0.109937839862271 |  -0.00454903965968862 |  1054 | F:H       | 1054 |  36 | Female | Caucasian        | Not Hispanic
+   63 | 0.282977916452898 | 1890.82247347497 | 0.738716142618038 | 16.8431901947661 | 0.00356384110637009 | 1050_TSI_SAD_XX |  0.0130008524283767 |   0.0038123279875876 | -15.3683690504614 |  0.138606085425708 |  -0.00558844686470476 |  1050 | N         | 1050 |  62 | Male   | African American | Not Hispanic
+   64 | 0.282667122257432 | 1879.25303806875 | 0.688275006024581 |  17.197646261022 | 0.00364282168447971 | 1045_TSI_SAD_XX |  0.0107421912252903 |    0.003909934243851 | -15.8725063469652 |  0.151366924930526 |  -0.00424231918836574 |  1045 | N         | 1045 |  22 | Male   | Asian            | Not Hispanic
+   65 | 0.281808105026539 |  1434.9579362551 | 0.669934204252738 | 18.6093342970752 |   0.019977018237114 | 1041_IEO_HAP_HI | 0.00537774804979563 |    0.212466176238271 | -14.1532764495966 | 0.0979894709720937 |  -0.00653391633044515 |  1041 | D         | 1041 |  42 | Male   | Caucasian        | Not Hispanic
+   66 | 0.279313110204875 | 1359.18905301507 | 0.621326513486312 | 18.8342791918557 | 0.00749307870864868 | 1029_IOM_DIS_XX | 0.00305909616872668 |   0.0213603272698144 | -15.9416101750899 |  0.115027147650023 |   -0.0063176765618399 |  1029 | D         | 1029 |  33 | Female | African American | Not Hispanic
+   67 | 0.278464591685304 | 1324.04351130227 | 0.658448598666093 | 18.5705313395559 | 0.00731142796576023 | 1011_IWL_HAP_XX | 0.00259590917266905 |   0.0222471521564563 |  -15.135722215269 |  0.101914293919844 |  -0.00625166401226733 |  1011 | N         | 1011 |  32 | Male   | Caucasian        | Not Hispanic
+   68 | 0.277791963331184 | 1831.36519337801 | 0.712944830622426 | 18.1738662523728 | 0.00664720544591546 | 1064_IEO_FEA_MD |  0.0110931871458888 |   0.0224581452146781 | -14.9774254958131 |  0.134791219642473 |  -0.00539813258307717 |  1064 | F         | 1064 |  53 | Male   | Caucasian        | Not Hispanic
+features=# CREATE TABLE final AS SELECT new_data.*, demo.*
+FROM new_data
+INNER JOIN demo
+ON new_data.actor = demo.id;
+ERROR:  column "id" specified more than once
+features=# SELECT * FROM audio-fin;
+ERROR:  syntax error at or near "-"
+LINE 1: SELECT * FROM audio-fin;
+                           ^
+features=# SELET * FROM audio_fin;
+ERROR:  syntax error at or near "SELET"
+LINE 1: SELET * FROM audio_fin;
+        ^
+features=# SELECT * FROM audio_fin;
+  id  |       cens        |     centroid     |      chroma       |     contrast     |       energy        |    filename     |      flatness       |       melspec        |       mfcc        |       tempo        |        tonnetz        | actor 
+------+-------------------+------------------+-------------------+------------------+---------------------+-----------------+---------------------+----------------------+-------------------+--------------------+-----------------------+-------
+    0 | 0.279777711806424 | 1669.24159594252 | 0.673603858500592 | 21.5729497844779 |  0.0203671548515558 | 1001_DFA_ANG_XX | 0.00533320847898722 |    0.219329774670671 | -17.2144606842778 | 0.0714224325206525 |  -0.00629380700663203 |  1001
+    1 |  0.27191426898043 |  1582.2116895626 | 0.646161068595392 | 17.7313658919327 | 0.00973675213754177 | 1036_IWW_SAD_XX | 0.00714558269828558 |   0.0441114246901398 | -14.6689467947399 |  0.103545852669229 |   -0.0069172867778338 |  1036
+    2 | 0.273672856463257 |  1400.6790318937 | 0.632570443294699 | 18.4394085318731 | 0.00623393291607499 | 1023_IWW_SAD_XX | 0.00348874344490469 |   0.0132211183783769 | -15.4084848650081 |  0.133960284552976 |   -0.0119882721702322 |  1023
+    3 | 0.271936031247591 | 1446.48901235764 | 0.628540255332211 | 18.9924875674436 | 0.00815130863338709 | 1018_TIE_FEA_XX | 0.00286585884168744 |   0.0284244263184661 | -15.1547445235972 |  0.125930175356076 |  -0.00831811319208134 |  1018
+    4 | 0.281903977101344 | 1537.72827429673 | 0.614400479819946 | 20.8215965111298 |  0.0532167479395866 | 1039_TIE_HAP_XX | 0.00335663417354226 |     1.72976239467337 | -13.0924380071903 |  0.071908136869843 |  -0.00551865680894347 |  1039
+    5 | 0.280795083829829 | 1633.96748631768 | 0.624506423920551 | 19.0085538978656 |  0.0150185003876686 | 1079_ITH_ANG_XX | 0.00711559876799583 |    0.113535602572142 | -14.5635643234173 | 0.0836369382741585 |   -0.0020117362099615 |  1079
+    6 | 0.282129825439379 | 1389.46576063599 | 0.686473970603097 | 17.3025218045782 | 0.00545780081301928 | 1031_IWW_FEA_XX | 0.00420121010392904 |  0.00969678548834477 | -14.9625108552356 |  0.104024982011817 |  -0.00760317428954599 |  1031
+    7 | 0.279477071792197 | 1940.00491978274 | 0.669053213651119 | 17.7279463190796 | 0.00597455725073814 | 1024_IWW_FEA_XX |  0.0155060989782214 |    0.011523062140985 | -15.6557722595081 |  0.107722557918071 |   0.00224850719112506 |  1024
+    8 | 0.275246874083286 | 1626.83326793486 | 0.558378365965367 | 20.0416445047398 |  0.0107066547498107 | 1010_IWW_HAP_XX | 0.00320056825876236 |   0.0481303800025282 | -15.8886189552607 |  0.100875574661676 |   0.00565487447287542 |  1010
+    9 |   0.2790650516668 | 1792.48782507237 | 0.658182576570574 | 20.8637300026034 | 0.00709285214543343 | 1005_IWW_HAP_XX | 0.00553864846006036 |   0.0190714578368288 | -17.9773100860227 | 0.0991447122250186 |   -0.0165224205550187 |  1005
+   10 |  0.28289600786586 | 1739.67651970742 | 0.745118051320628 | 18.6509976491782 | 0.00322551559656858 | 1088_WSI_FEA_XX |  0.0100571662187576 |  0.00290185524180164 | -16.4511799687821 |   0.12334406328024 |   -0.0101732662665579 |  1088
+   11 | 0.276601581479969 | 1819.54259315269 | 0.702969473809613 | 19.3818063528006 | 0.00618947995826602 | 1088_DFA_FEA_XX |  0.0107211414724588 |   0.0224199869521284 | -15.9185449088012 |   0.15342176275268 |   -0.0125660123563591 |  1088
+   12 | 0.279868500509457 | 1418.13465567237 | 0.623199433664381 | 18.6575139485432 |  0.0047175083309412 | 1028_TIE_NEU_XX | 0.00311031332239509 |  0.00628222481691377 | -15.7409522758242 |  0.149435852273274 |   -0.0147340238931069 |  1028
+   13 | 0.273501695177263 | 1657.65698575142 | 0.632870978751682 | 19.5182976878379 |  0.0100573087111115 | 1014_IWW_NEU_XX | 0.00679047172889113 |   0.0353453845733199 | -14.7052968721792 |  0.121869530518555 |   -0.0047466341262059 |  1014
+   14 | 0.281748894696843 | 1567.24733099917 |  0.66972668038072 | 20.3300515114626 | 0.00818899087607861 | 1001_IWW_NEU_XX | 0.00440576439723372 |   0.0263742655862101 | -17.8649949568073 |  0.107406390698193 |  -0.00172169419760612 |  1001
+   15 | 0.279287653266865 | 1714.78806315856 | 0.640036475244894 | 20.4194923376527 |  0.0191923566162586 | 1056_IWW_ANG_XX | 0.00617970153689385 |    0.157287388233623 |  -14.588174204413 | 0.0758633089362965 |  -0.00630259723184254 |  1056
+   16 | 0.269551973718645 | 1654.90518501966 | 0.540768876088126 | 20.2583982622566 |  0.0170957446098328 | 1043_IWW_ANG_XX | 0.00725560635328293 |    0.106419373338544 | -14.6145657074539 | 0.0964432923477222 |   -0.0130166561435662 |  1043
+   17 | 0.280654421498253 | 1268.60261397443 | 0.683045517409296 | 17.8978191188403 | 0.00520150549709797 | 1026_IOM_SAD_XX | 0.00250309379771352 |   0.0101016428952405 | -15.2312483208731 |  0.137626394570018 |   -0.0165915735168794 |  1026
+   18 | 0.270593544736562 | 1301.26840714605 | 0.643302720363518 | 18.5854423950587 | 0.00622420571744442 | 1033_IOM_SAD_XX | 0.00305439345538616 |   0.0149799955850149 | -15.0715254604544 |  0.134654057230064 |   -0.0164116921044975 |  1033
+   19 | 0.258862276619466 | 1379.61291440765 | 0.567416241401726 |  18.726025723719 |  0.0128878159448504 | 1021_IOM_FEA_XX | 0.00361576513387263 |   0.0838373804636585 | -16.3016851832542 |  0.128514431449465 |  -0.00466585584299214 |  1021
+   20 | 0.264046440414355 | 2020.20695477351 | 0.542178764477021 | 22.6607426174329 |  0.0374339483678341 | 1079_IEO_DIS_MD | 0.00493146199733019 |    0.629113089544168 | -14.4081904462415 |  0.145537918106021 |  -0.00393288661193325 |  1079
+   21 | 0.282351899237076 | 1377.98584370453 | 0.706669487920231 | 17.3251333470984 | 0.00741237727925181 | 1034_IOM_FEA_XX |  0.0043532270938158 |   0.0266343588691128 | -15.0412292153323 |  0.113110301791944 |  -0.00163069268624319 |  1034
+   22 | 0.275654088619752 | 1424.36254582477 | 0.598997972666377 | 20.5582363769067 |  0.0109241688624024 | 1038_IWL_DIS_XX | 0.00406918302178383 |   0.0427914045282562 | -15.0594272881444 |  0.137923523825079 |  -0.00458982607893884 |  1038
+   23 | 0.272002943615996 | 1454.99085933287 | 0.574955351414643 | 22.2894829518242 |  0.0275940969586372 | 1015_IOM_HAP_XX | 0.00422211131080985 |    0.334226919552461 | -13.9311991871278 | 0.0934767482497768 |   -0.0125509099489592 |  1015
+features=# ALTER TABLE audio_fin
+features-# DROP COLUMN id;
+ALTER TABLE
+features=# SELECT * FROM audio_fin;
+       cens        |     centroid     |      chroma       |     contrast     |       energy        |    filename     |      flatness       |       melspec        |       mfcc        |       tempo        |        tonnetz        | actor 
+-------------------+------------------+-------------------+------------------+---------------------+-----------------+---------------------+----------------------+-------------------+--------------------+-----------------------+-------
+ 0.279777711806424 | 1669.24159594252 | 0.673603858500592 | 21.5729497844779 |  0.0203671548515558 | 1001_DFA_ANG_XX | 0.00533320847898722 |    0.219329774670671 | -17.2144606842778 | 0.0714224325206525 |  -0.00629380700663203 |  1001
+  0.27191426898043 |  1582.2116895626 | 0.646161068595392 | 17.7313658919327 | 0.00973675213754177 | 1036_IWW_SAD_XX | 0.00714558269828558 |   0.0441114246901398 | -14.6689467947399 |  0.103545852669229 |   -0.0069172867778338 |  1036
+ 0.273672856463257 |  1400.6790318937 | 0.632570443294699 | 18.4394085318731 | 0.00623393291607499 | 1023_IWW_SAD_XX | 0.00348874344490469 |   0.0132211183783769 | -15.4084848650081 |  0.133960284552976 |   -0.0119882721702322 |  1023
+ 0.271936031247591 | 1446.48901235764 | 0.628540255332211 | 18.9924875674436 | 0.00815130863338709 | 1018_TIE_FEA_XX | 0.00286585884168744 |   0.0284244263184661 | -15.1547445235972 |  0.125930175356076 |  -0.00831811319208134 |  1018
+ 0.281903977101344 | 1537.72827429673 | 0.614400479819946 | 20.8215965111298 |  0.0532167479395866 | 1039_TIE_HAP_XX | 0.00335663417354226 |     1.72976239467337 | -13.0924380071903 |  0.071908136869843 |  -0.00551865680894347 |  1039
+ 0.280795083829829 | 1633.96748631768 | 0.624506423920551 | 19.0085538978656 |  0.0150185003876686 | 1079_ITH_ANG_XX | 0.00711559876799583 |    0.113535602572142 | -14.5635643234173 | 0.0836369382741585 |   -0.0020117362099615 |  1079
+ 0.282129825439379 | 1389.46576063599 | 0.686473970603097 | 17.3025218045782 | 0.00545780081301928 | 1031_IWW_FEA_XX | 0.00420121010392904 |  0.00969678548834477 | -14.9625108552356 |  0.104024982011817 |  -0.00760317428954599 |  1031
+ 0.279477071792197 | 1940.00491978274 | 0.669053213651119 | 17.7279463190796 | 0.00597455725073814 | 1024_IWW_FEA_XX |  0.0155060989782214 |    0.011523062140985 | -15.6557722595081 |  0.107722557918071 |   0.00224850719112506 |  1024
+ 0.275246874083286 | 1626.83326793486 | 0.558378365965367 | 20.0416445047398 |  0.0107066547498107 | 1010_IWW_HAP_XX | 0.00320056825876236 |   0.0481303800025282 | -15.8886189552607 |  0.100875574661676 |   0.00565487447287542 |  1010
+   0.2790650516668 | 1792.48782507237 | 0.658182576570574 | 20.8637300026034 | 0.00709285214543343 | 1005_IWW_HAP_XX | 0.00553864846006036 |   0.0190714578368288 | -17.9773100860227 | 0.0991447122250186 |   -0.0165224205550187 |  1005
+  0.28289600786586 | 1739.67651970742 | 0.745118051320628 | 18.6509976491782 | 0.00322551559656858 | 1088_WSI_FEA_XX |  0.0100571662187576 |  0.00290185524180164 | -16.4511799687821 |   0.12334406328024 |   -0.0101732662665579 |  1088
+ 0.276601581479969 | 1819.54259315269 | 0.702969473809613 | 19.3818063528006 | 0.00618947995826602 | 1088_DFA_FEA_XX |  0.0107211414724588 |   0.0224199869521284 | -15.9185449088012 |   0.15342176275268 |   -0.0125660123563591 |  1088
+ 0.279868500509457 | 1418.13465567237 | 0.623199433664381 | 18.6575139485432 |  0.0047175083309412 | 1028_TIE_NEU_XX | 0.00311031332239509 |  0.00628222481691377 | -15.7409522758242 |  0.149435852273274 |   -0.0147340238931069 |  1028
+ 0.273501695177263 | 1657.65698575142 | 0.632870978751682 | 19.5182976878379 |  0.0100573087111115 | 1014_IWW_NEU_XX | 0.00679047172889113 |   0.0353453845733199 | -14.7052968721792 |  0.121869530518555 |   -0.0047466341262059 |  1014
+ 0.281748894696843 | 1567.24733099917 |  0.66972668038072 | 20.3300515114626 | 0.00818899087607861 | 1001_IWW_NEU_XX | 0.00440576439723372 |   0.0263742655862101 | -17.8649949568073 |  0.107406390698193 |  -0.00172169419760612 |  1001
+ 0.279287653266865 | 1714.78806315856 | 0.640036475244894 | 20.4194923376527 |  0.0191923566162586 | 1056_IWW_ANG_XX | 0.00617970153689385 |    0.157287388233623 |  -14.588174204413 | 0.0758633089362965 |  -0.00630259723184254 |  1056
+ 0.269551973718645 | 1654.90518501966 | 0.540768876088126 | 20.2583982622566 |  0.0170957446098328 | 1043_IWW_ANG_XX | 0.00725560635328293 |    0.106419373338544 | -14.6145657074539 | 0.0964432923477222 |   -0.0130166561435662 |  1043
+ 0.280654421498253 | 1268.60261397443 | 0.683045517409296 | 17.8978191188403 | 0.00520150549709797 | 1026_IOM_SAD_XX | 0.00250309379771352 |   0.0101016428952405 | -15.2312483208731 |  0.137626394570018 |   -0.0165915735168794 |  1026
+ 0.270593544736562 | 1301.26840714605 | 0.643302720363518 | 18.5854423950587 | 0.00622420571744442 | 1033_IOM_SAD_XX | 0.00305439345538616 |   0.0149799955850149 | -15.0715254604544 |  0.134654057230064 |   -0.0164116921044975 |  1033
+ 0.258862276619466 | 1379.61291440765 | 0.567416241401726 |  18.726025723719 |  0.0128878159448504 | 1021_IOM_FEA_XX | 0.00361576513387263 |   0.0838373804636585 | -16.3016851832542 |  0.128514431449465 |  -0.00466585584299214 |  1021
+ 0.264046440414355 | 2020.20695477351 | 0.542178764477021 | 22.6607426174329 |  0.0374339483678341 | 1079_IEO_DIS_MD | 0.00493146199733019 |    0.629113089544168 | -14.4081904462415 |  0.145537918106021 |  -0.00393288661193325 |  1079
+ 0.282351899237076 | 1377.98584370453 | 0.706669487920231 | 17.3251333470984 | 0.00741237727925181 | 1034_IOM_FEA_XX |  0.0043532270938158 |   0.0266343588691128 | -15.0412292153323 |  0.113110301791944 |  -0.00163069268624319 |  1034
+ 0.275654088619752 | 1424.36254582477 | 0.598997972666377 | 20.5582363769067 |  0.0109241688624024 | 1038_IWL_DIS_XX | 0.00406918302178383 |   0.0427914045282562 | -15.0594272881444 |  0.137923523825079 |  -0.00458982607893884 |  1038
+ 0.272002943615996 | 1454.99085933287 | 0.574955351414643 | 22.2894829518242 |  0.0275940969586372 | 1015_IOM_HAP_XX | 0.00422211131080985 |    0.334226919552461 | -13.9311991871278 | 0.0934767482497768 |   -0.0125509099489592 |  1015
+features=# CREATE TABLE final AS SELECT new_data.*, demo.*
+FROM new_data
+INNER JOIN demo
+ON new_data.actor = demo.id;
+ERROR:  column "id" specified more than once
+features=# SELECT new_data.*, demo.*
+FROM new_data
+INNER JOIN demo
+ON new_data.actor = demo.id;
+  id  |       cens        |     centroid     |      chroma       |     contrast     |       energy        |    filename     |      flatness       |       melspec        |       mfcc        |       tempo        |        tonnetz        | actor |  emotion  |  id  | age |  sex   |       race       |  ethinicity  
+------+-------------------+------------------+-------------------+------------------+---------------------+-----------------+---------------------+----------------------+-------------------+--------------------+-----------------------+-------+-----------+------+-----+--------+------------------+--------------
+    0 | 0.279777711806424 | 1669.24159594252 | 0.673603858500592 | 21.5729497844779 |  0.0203671548515558 | 1001_DFA_ANG_XX | 0.00533320847898722 |    0.219329774670671 | -17.2144606842778 | 0.0714224325206525 |  -0.00629380700663203 |  1001 | A         | 1001 |  51 | Male   | Caucasian        | Not Hispanic
+    1 |  0.27191426898043 |  1582.2116895626 | 0.646161068595392 | 17.7313658919327 | 0.00973675213754177 | 1036_IWW_SAD_XX | 0.00714558269828558 |   0.0441114246901398 | -14.6689467947399 |  0.103545852669229 |   -0.0069172867778338 |  1036 | F         | 1036 |  49 | Male   | African American | Not Hispanic
+    2 | 0.273672856463257 |  1400.6790318937 | 0.632570443294699 | 18.4394085318731 | 0.00623393291607499 | 1023_IWW_SAD_XX | 0.00348874344490469 |   0.0132211183783769 | -15.4084848650081 |  0.133960284552976 |   -0.0119882721702322 |  1023 | N         | 1023 |  22 | Male   | Caucasian        | Not Hispanic
+    3 | 0.271936031247591 | 1446.48901235764 | 0.628540255332211 | 18.9924875674436 | 0.00815130863338709 | 1018_TIE_FEA_XX | 0.00286585884168744 |   0.0284244263184661 | -15.1547445235972 |  0.125930175356076 |  -0.00831811319208134 |  1018 | S         | 1018 |  25 | Female | Caucasian        | Hispanic
+    4 | 0.281903977101344 | 1537.72827429673 | 0.614400479819946 | 20.8215965111298 |  0.0532167479395866 | 1039_TIE_HAP_XX | 0.00335663417354226 |     1.72976239467337 | -13.0924380071903 |  0.071908136869843 |  -0.00551865680894347 |  1039 | H         | 1039 |  51 | Male   | African American | Not Hispanic
+    5 | 0.280795083829829 | 1633.96748631768 | 0.624506423920551 | 19.0085538978656 |  0.0150185003876686 | 1079_ITH_ANG_XX | 0.00711559876799583 |    0.113535602572142 | -14.5635643234173 | 0.0836369382741585 |   -0.0020117362099615 |  1079 | D         | 1079 |  21 | Female | Caucasian        | Hispanic
+    6 | 0.282129825439379 | 1389.46576063599 | 0.686473970603097 | 17.3025218045782 | 0.00545780081301928 | 1031_IWW_FEA_XX | 0.00420121010392904 |  0.00969678548834477 | -14.9625108552356 |  0.104024982011817 |  -0.00760317428954599 |  1031 | F:N       | 1031 |  31 | Male   | Caucasian        | Hispanic
+    7 | 0.279477071792197 | 1940.00491978274 | 0.669053213651119 | 17.7279463190796 | 0.00597455725073814 | 1024_IWW_FEA_XX |  0.0155060989782214 |    0.011523062140985 | -15.6557722595081 |  0.107722557918071 |   0.00224850719112506 |  1024 | F         | 1024 |  59 | Female | Caucasian        | Not Hispanic
+    8 | 0.275246874083286 | 1626.83326793486 | 0.558378365965367 | 20.0416445047398 |  0.0107066547498107 | 1010_IWW_HAP_XX | 0.00320056825876236 |   0.0481303800025282 | -15.8886189552607 |  0.100875574661676 |   0.00565487447287542 |  1010 | H         | 1010 |  27 | Female | Caucasian        | Not Hispanic
+    9 |   0.2790650516668 | 1792.48782507237 | 0.658182576570574 | 20.8637300026034 | 0.00709285214543343 | 1005_IWW_HAP_XX | 0.00553864846006036 |   0.0190714578368288 | -17.9773100860227 | 0.0991447122250186 |   -0.0165224205550187 |  1005 | H:N       | 1005 |  29 | Male   | African American | Not Hispanic
+   10 |  0.28289600786586 | 1739.67651970742 | 0.745118051320628 | 18.6509976491782 | 0.00322551559656858 | 1088_WSI_FEA_XX |  0.0100571662187576 |  0.00290185524180164 | -16.4511799687821 |   0.12334406328024 |   -0.0101732662665579 |  1088 | N:S       | 1088 |  23 | Male   | African American | Not Hispanic
+   11 | 0.276601581479969 | 1819.54259315269 | 0.702969473809613 | 19.3818063528006 | 0.00618947995826602 | 1088_DFA_FEA_XX |  0.0107211414724588 |   0.0224199869521284 | -15.9185449088012 |   0.15342176275268 |   -0.0125660123563591 |  1088 | N         | 1088 |  23 | Male   | African American | Not Hispanic
+   12 | 0.279868500509457 | 1418.13465567237 | 0.623199433664381 | 18.6575139485432 |  0.0047175083309412 | 1028_TIE_NEU_XX | 0.00311031332239509 |  0.00628222481691377 | -15.7409522758242 |  0.149435852273274 |   -0.0147340238931069 |  1028 | N         | 1028 |  57 | Female | Caucasian        | Not Hispanic
+   13 | 0.273501695177263 | 1657.65698575142 | 0.632870978751682 | 19.5182976878379 |  0.0100573087111115 | 1014_IWW_NEU_XX | 0.00679047172889113 |   0.0353453845733199 | -14.7052968721792 |  0.121869530518555 |   -0.0047466341262059 |  1014 | N         | 1014 |  24 | Male   | Caucasian        | Not Hispanic
+   14 | 0.281748894696843 | 1567.24733099917 |  0.66972668038072 | 20.3300515114626 | 0.00818899087607861 | 1001_IWW_NEU_XX | 0.00440576439723372 |   0.0263742655862101 | -17.8649949568073 |  0.107406390698193 |  -0.00172169419760612 |  1001 | N         | 1001 |  51 | Male   | Caucasian        | Not Hispanic
+   15 | 0.279287653266865 | 1714.78806315856 | 0.640036475244894 | 20.4194923376527 |  0.0191923566162586 | 1056_IWW_ANG_XX | 0.00617970153689385 |    0.157287388233623 |  -14.588174204413 | 0.0758633089362965 |  -0.00630259723184254 |  1056 | D         | 1056 |  52 | Female | African American | Not Hispanic
+   16 | 0.269551973718645 | 1654.90518501966 | 0.540768876088126 | 20.2583982622566 |  0.0170957446098328 | 1043_IWW_ANG_XX | 0.00725560635328293 |    0.106419373338544 | -14.6145657074539 | 0.0964432923477222 |   -0.0130166561435662 |  1043 | D         | 1043 |  25 | Female | Caucasian        | Hispanic
+   17 | 0.280654421498253 | 1268.60261397443 | 0.683045517409296 | 17.8978191188403 | 0.00520150549709797 | 1026_IOM_SAD_XX | 0.00250309379771352 |   0.0101016428952405 | -15.2312483208731 |  0.137626394570018 |   -0.0165915735168794 |  1026 | S         | 1026 |  33 | Male   | Caucasian        | Not Hispanic
+   18 | 0.270593544736562 | 1301.26840714605 | 0.643302720363518 | 18.5854423950587 | 0.00622420571744442 | 1033_IOM_SAD_XX | 0.00305439345538616 |   0.0149799955850149 | -15.0715254604544 |  0.134654057230064 |   -0.0164116921044975 |  1033 | N:S       | 1033 |  31 | Male   | Caucasian        | Not Hispanic
+   19 | 0.258862276619466 | 1379.61291440765 | 0.567416241401726 |  18.726025723719 |  0.0128878159448504 | 1021_IOM_FEA_XX | 0.00361576513387263 |   0.0838373804636585 | -16.3016851832542 |  0.128514431449465 |  -0.00466585584299214 |  1021 | N         | 1021 |  30 | Female | Caucasian        | Not Hispanic
+   20 | 0.264046440414355 | 2020.20695477351 | 0.542178764477021 | 22.6607426174329 |  0.0374339483678341 | 1079_IEO_DIS_MD | 0.00493146199733019 |    0.629113089544168 | -14.4081904462415 |  0.145537918106021 |  -0.00393288661193325 |  1079 | N         | 1079 |  21 | Female | Caucasian        | Hispanic
+   21 | 0.282351899237076 | 1377.98584370453 | 0.706669487920231 | 17.3251333470984 | 0.00741237727925181 | 1034_IOM_FEA_XX |  0.0043532270938158 |   0.0266343588691128 | -15.0412292153323 |  0.113110301791944 |  -0.00163069268624319 |  1034 | N         | 1034 |  74 | Male   | Caucasian        | Not Hispanic
+   22 | 0.275654088619752 | 1424.36254582477 | 0.598997972666377 | 20.5582363769067 |  0.0109241688624024 | 1038_IWL_DIS_XX | 0.00406918302178383 |   0.0427914045282562 | -15.0594272881444 |  0.137923523825079 |  -0.00458982607893884 |  1038 | D         | 1038 |  21 | Male   | African American | Not Hispanic
+   23 | 0.272002943615996 | 1454.99085933287 | 0.574955351414643 | 22.2894829518242 |  0.0275940969586372 | 1015_IOM_HAP_XX | 0.00422211131080985 |    0.334226919552461 | -13.9311991871278 | 0.0934767482497768 |   -0.0125509099489592 |  1015 | H         | 1015 |  32 | Male   | African American | Not Hispanic
+features=# SELECT new_data.*, demo.age, demo.race, demo.sex, demo.ethnicity
+FROM new_data
+INNER JOIN demo
+ON new_data.actor = demo.id;
+ERROR:  column demo.ethnicity does not exist
+LINE 1: SELECT new_data.*, demo.age, demo.race, demo.sex, demo.ethni...
+                                                          ^
+HINT:  Perhaps you meant to reference the column "demo.ethinicity".
+features=# SELECT new_data.*, demo.age, demo.race, demo.sex, demo.ethinicity
+FROM new_data
+INNER JOIN demo
+ON new_data.actor = demo.id;
+  id  |       cens        |     centroid     |      chroma       |     contrast     |       energy        |    filename     |      flatness       |       melspec        |       mfcc        |       tempo        |        tonnetz        | actor |  emotion  | age |       race       |  sex   |  ethinicity  
+------+-------------------+------------------+-------------------+------------------+---------------------+-----------------+---------------------+----------------------+-------------------+--------------------+-----------------------+-------+-----------+-----+------------------+--------+--------------
+    0 | 0.279777711806424 | 1669.24159594252 | 0.673603858500592 | 21.5729497844779 |  0.0203671548515558 | 1001_DFA_ANG_XX | 0.00533320847898722 |    0.219329774670671 | -17.2144606842778 | 0.0714224325206525 |  -0.00629380700663203 |  1001 | A         |  51 | Caucasian        | Male   | Not Hispanic
+    1 |  0.27191426898043 |  1582.2116895626 | 0.646161068595392 | 17.7313658919327 | 0.00973675213754177 | 1036_IWW_SAD_XX | 0.00714558269828558 |   0.0441114246901398 | -14.6689467947399 |  0.103545852669229 |   -0.0069172867778338 |  1036 | F         |  49 | African American | Male   | Not Hispanic
+    2 | 0.273672856463257 |  1400.6790318937 | 0.632570443294699 | 18.4394085318731 | 0.00623393291607499 | 1023_IWW_SAD_XX | 0.00348874344490469 |   0.0132211183783769 | -15.4084848650081 |  0.133960284552976 |   -0.0119882721702322 |  1023 | N         |  22 | Caucasian        | Male   | Not Hispanic
+    3 | 0.271936031247591 | 1446.48901235764 | 0.628540255332211 | 18.9924875674436 | 0.00815130863338709 | 1018_TIE_FEA_XX | 0.00286585884168744 |   0.0284244263184661 | -15.1547445235972 |  0.125930175356076 |  -0.00831811319208134 |  1018 | S         |  25 | Caucasian        | Female | Hispanic
+    4 | 0.281903977101344 | 1537.72827429673 | 0.614400479819946 | 20.8215965111298 |  0.0532167479395866 | 1039_TIE_HAP_XX | 0.00335663417354226 |     1.72976239467337 | -13.0924380071903 |  0.071908136869843 |  -0.00551865680894347 |  1039 | H         |  51 | African American | Male   | Not Hispanic
+    5 | 0.280795083829829 | 1633.96748631768 | 0.624506423920551 | 19.0085538978656 |  0.0150185003876686 | 1079_ITH_ANG_XX | 0.00711559876799583 |    0.113535602572142 | -14.5635643234173 | 0.0836369382741585 |   -0.0020117362099615 |  1079 | D         |  21 | Caucasian        | Female | Hispanic
+    6 | 0.282129825439379 | 1389.46576063599 | 0.686473970603097 | 17.3025218045782 | 0.00545780081301928 | 1031_IWW_FEA_XX | 0.00420121010392904 |  0.00969678548834477 | -14.9625108552356 |  0.104024982011817 |  -0.00760317428954599 |  1031 | F:N       |  31 | Caucasian        | Male   | Hispanic
+    7 | 0.279477071792197 | 1940.00491978274 | 0.669053213651119 | 17.7279463190796 | 0.00597455725073814 | 1024_IWW_FEA_XX |  0.0155060989782214 |    0.011523062140985 | -15.6557722595081 |  0.107722557918071 |   0.00224850719112506 |  1024 | F         |  59 | Caucasian        | Female | Not Hispanic
+    8 | 0.275246874083286 | 1626.83326793486 | 0.558378365965367 | 20.0416445047398 |  0.0107066547498107 | 1010_IWW_HAP_XX | 0.00320056825876236 |   0.0481303800025282 | -15.8886189552607 |  0.100875574661676 |   0.00565487447287542 |  1010 | H         |  27 | Caucasian        | Female | Not Hispanic
+    9 |   0.2790650516668 | 1792.48782507237 | 0.658182576570574 | 20.8637300026034 | 0.00709285214543343 | 1005_IWW_HAP_XX | 0.00553864846006036 |   0.0190714578368288 | -17.9773100860227 | 0.0991447122250186 |   -0.0165224205550187 |  1005 | H:N       |  29 | African American | Male   | Not Hispanic
+   10 |  0.28289600786586 | 1739.67651970742 | 0.745118051320628 | 18.6509976491782 | 0.00322551559656858 | 1088_WSI_FEA_XX |  0.0100571662187576 |  0.00290185524180164 | -16.4511799687821 |   0.12334406328024 |   -0.0101732662665579 |  1088 | N:S       |  23 | African American | Male   | Not Hispanic
+   11 | 0.276601581479969 | 1819.54259315269 | 0.702969473809613 | 19.3818063528006 | 0.00618947995826602 | 1088_DFA_FEA_XX |  0.0107211414724588 |   0.0224199869521284 | -15.9185449088012 |   0.15342176275268 |   -0.0125660123563591 |  1088 | N         |  23 | African American | Male   | Not Hispanic
+   12 | 0.279868500509457 | 1418.13465567237 | 0.623199433664381 | 18.6575139485432 |  0.0047175083309412 | 1028_TIE_NEU_XX | 0.00311031332239509 |  0.00628222481691377 | -15.7409522758242 |  0.149435852273274 |   -0.0147340238931069 |  1028 | N         |  57 | Caucasian        | Female | Not Hispanic
+   13 | 0.273501695177263 | 1657.65698575142 | 0.632870978751682 | 19.5182976878379 |  0.0100573087111115 | 1014_IWW_NEU_XX | 0.00679047172889113 |   0.0353453845733199 | -14.7052968721792 |  0.121869530518555 |   -0.0047466341262059 |  1014 | N         |  24 | Caucasian        | Male   | Not Hispanic
+   14 | 0.281748894696843 | 1567.24733099917 |  0.66972668038072 | 20.3300515114626 | 0.00818899087607861 | 1001_IWW_NEU_XX | 0.00440576439723372 |   0.0263742655862101 | -17.8649949568073 |  0.107406390698193 |  -0.00172169419760612 |  1001 | N         |  51 | Caucasian        | Male   | Not Hispanic
+   15 | 0.279287653266865 | 1714.78806315856 | 0.640036475244894 | 20.4194923376527 |  0.0191923566162586 | 1056_IWW_ANG_XX | 0.00617970153689385 |    0.157287388233623 |  -14.588174204413 | 0.0758633089362965 |  -0.00630259723184254 |  1056 | D         |  52 | African American | Female | Not Hispanic
+   16 | 0.269551973718645 | 1654.90518501966 | 0.540768876088126 | 20.2583982622566 |  0.0170957446098328 | 1043_IWW_ANG_XX | 0.00725560635328293 |    0.106419373338544 | -14.6145657074539 | 0.0964432923477222 |   -0.0130166561435662 |  1043 | D         |  25 | Caucasian        | Female | Hispanic
+   17 | 0.280654421498253 | 1268.60261397443 | 0.683045517409296 | 17.8978191188403 | 0.00520150549709797 | 1026_IOM_SAD_XX | 0.00250309379771352 |   0.0101016428952405 | -15.2312483208731 |  0.137626394570018 |   -0.0165915735168794 |  1026 | S         |  33 | Caucasian        | Male   | Not Hispanic
+   18 | 0.270593544736562 | 1301.26840714605 | 0.643302720363518 | 18.5854423950587 | 0.00622420571744442 | 1033_IOM_SAD_XX | 0.00305439345538616 |   0.0149799955850149 | -15.0715254604544 |  0.134654057230064 |   -0.0164116921044975 |  1033 | N:S       |  31 | Caucasian        | Male   | Not Hispanic
+   19 | 0.258862276619466 | 1379.61291440765 | 0.567416241401726 |  18.726025723719 |  0.0128878159448504 | 1021_IOM_FEA_XX | 0.00361576513387263 |   0.0838373804636585 | -16.3016851832542 |  0.128514431449465 |  -0.00466585584299214 |  1021 | N         |  30 | Caucasian        | Female | Not Hispanic
+   20 | 0.264046440414355 | 2020.20695477351 | 0.542178764477021 | 22.6607426174329 |  0.0374339483678341 | 1079_IEO_DIS_MD | 0.00493146199733019 |    0.629113089544168 | -14.4081904462415 |  0.145537918106021 |  -0.00393288661193325 |  1079 | N         |  21 | Caucasian        | Female | Hispanic
+   21 | 0.282351899237076 | 1377.98584370453 | 0.706669487920231 | 17.3251333470984 | 0.00741237727925181 | 1034_IOM_FEA_XX |  0.0043532270938158 |   0.0266343588691128 | -15.0412292153323 |  0.113110301791944 |  -0.00163069268624319 |  1034 | N         |  74 | Caucasian        | Male   | Not Hispanic
+   22 | 0.275654088619752 | 1424.36254582477 | 0.598997972666377 | 20.5582363769067 |  0.0109241688624024 | 1038_IWL_DIS_XX | 0.00406918302178383 |   0.0427914045282562 | -15.0594272881444 |  0.137923523825079 |  -0.00458982607893884 |  1038 | D         |  21 | African American | Male   | Not Hispanic
+   23 | 0.272002943615996 | 1454.99085933287 | 0.574955351414643 | 22.2894829518242 |  0.0275940969586372 | 1015_IOM_HAP_XX | 0.00422211131080985 |    0.334226919552461 | -13.9311991871278 | 0.0934767482497768 |   -0.0125509099489592 |  1015 | H         |  32 | African American | Male   | Not Hispanic
+features=# CREATE TABLE final AS SELECT new_data.*, demo.age, demo.race, demo.sex, demo.ethinicity
+FROM new_data
+INNER JOIN demo
+ON new_data.actor = demo.id;
+SELECT 7837
+features=# SELECT * FROM final;
+  id  |       cens        |     centroid     |      chroma       |     contrast     |       energy        |    filename     |      flatness       |       melspec        |       mfcc        |       tempo        |        tonnetz        | actor |  emotion  | age |       race       |  sex   |  ethinicity  
+------+-------------------+------------------+-------------------+------------------+---------------------+-----------------+---------------------+----------------------+-------------------+--------------------+-----------------------+-------+-----------+-----+------------------+--------+--------------
+    0 | 0.279777711806424 | 1669.24159594252 | 0.673603858500592 | 21.5729497844779 |  0.0203671548515558 | 1001_DFA_ANG_XX | 0.00533320847898722 |    0.219329774670671 | -17.2144606842778 | 0.0714224325206525 |  -0.00629380700663203 |  1001 | A         |  51 | Caucasian        | Male   | Not Hispanic
+    1 |  0.27191426898043 |  1582.2116895626 | 0.646161068595392 | 17.7313658919327 | 0.00973675213754177 | 1036_IWW_SAD_XX | 0.00714558269828558 |   0.0441114246901398 | -14.6689467947399 |  0.103545852669229 |   -0.0069172867778338 |  1036 | F         |  49 | African American | Male   | Not Hispanic
+    2 | 0.273672856463257 |  1400.6790318937 | 0.632570443294699 | 18.4394085318731 | 0.00623393291607499 | 1023_IWW_SAD_XX | 0.00348874344490469 |   0.0132211183783769 | -15.4084848650081 |  0.133960284552976 |   -0.0119882721702322 |  1023 | N         |  22 | Caucasian        | Male   | Not Hispanic
+    3 | 0.271936031247591 | 1446.48901235764 | 0.628540255332211 | 18.9924875674436 | 0.00815130863338709 | 1018_TIE_FEA_XX | 0.00286585884168744 |   0.0284244263184661 | -15.1547445235972 |  0.125930175356076 |  -0.00831811319208134 |  1018 | S         |  25 | Caucasian        | Female | Hispanic
+    4 | 0.281903977101344 | 1537.72827429673 | 0.614400479819946 | 20.8215965111298 |  0.0532167479395866 | 1039_TIE_HAP_XX | 0.00335663417354226 |     1.72976239467337 | -13.0924380071903 |  0.071908136869843 |  -0.00551865680894347 |  1039 | H         |  51 | African American | Male   | Not Hispanic
+    5 | 0.280795083829829 | 1633.96748631768 | 0.624506423920551 | 19.0085538978656 |  0.0150185003876686 | 1079_ITH_ANG_XX | 0.00711559876799583 |    0.113535602572142 | -14.5635643234173 | 0.0836369382741585 |   -0.0020117362099615 |  1079 | D         |  21 | Caucasian        | Female | Hispanic
+    6 | 0.282129825439379 | 1389.46576063599 | 0.686473970603097 | 17.3025218045782 | 0.00545780081301928 | 1031_IWW_FEA_XX | 0.00420121010392904 |  0.00969678548834477 | -14.9625108552356 |  0.104024982011817 |  -0.00760317428954599 |  1031 | F:N       |  31 | Caucasian        | Male   | Hispanic
+    7 | 0.279477071792197 | 1940.00491978274 | 0.669053213651119 | 17.7279463190796 | 0.00597455725073814 | 1024_IWW_FEA_XX |  0.0155060989782214 |    0.011523062140985 | -15.6557722595081 |  0.107722557918071 |   0.00224850719112506 |  1024 | F         |  59 | Caucasian        | Female | Not Hispanic
+    8 | 0.275246874083286 | 1626.83326793486 | 0.558378365965367 | 20.0416445047398 |  0.0107066547498107 | 1010_IWW_HAP_XX | 0.00320056825876236 |   0.0481303800025282 | -15.8886189552607 |  0.100875574661676 |   0.00565487447287542 |  1010 | H         |  27 | Caucasian        | Female | Not Hispanic
+    9 |   0.2790650516668 | 1792.48782507237 | 0.658182576570574 | 20.8637300026034 | 0.00709285214543343 | 1005_IWW_HAP_XX | 0.00553864846006036 |   0.0190714578368288 | -17.9773100860227 | 0.0991447122250186 |   -0.0165224205550187 |  1005 | H:N       |  29 | African American | Male   | Not Hispanic
+   10 |  0.28289600786586 | 1739.67651970742 | 0.745118051320628 | 18.6509976491782 | 0.00322551559656858 | 1088_WSI_FEA_XX |  0.0100571662187576 |  0.00290185524180164 | -16.4511799687821 |   0.12334406328024 |   -0.0101732662665579 |  1088 | N:S       |  23 | African American | Male   | Not Hispanic
+   11 | 0.276601581479969 | 1819.54259315269 | 0.702969473809613 | 19.3818063528006 | 0.00618947995826602 | 1088_DFA_FEA_XX |  0.0107211414724588 |   0.0224199869521284 | -15.9185449088012 |   0.15342176275268 |   -0.0125660123563591 |  1088 | N         |  23 | African American | Male   | Not Hispanic
+   12 | 0.279868500509457 | 1418.13465567237 | 0.623199433664381 | 18.6575139485432 |  0.0047175083309412 | 1028_TIE_NEU_XX | 0.00311031332239509 |  0.00628222481691377 | -15.7409522758242 |  0.149435852273274 |   -0.0147340238931069 |  1028 | N         |  57 | Caucasian        | Female | Not Hispanic
+   13 | 0.273501695177263 | 1657.65698575142 | 0.632870978751682 | 19.5182976878379 |  0.0100573087111115 | 1014_IWW_NEU_XX | 0.00679047172889113 |   0.0353453845733199 | -14.7052968721792 |  0.121869530518555 |   -0.0047466341262059 |  1014 | N         |  24 | Caucasian        | Male   | Not Hispanic
+   14 | 0.281748894696843 | 1567.24733099917 |  0.66972668038072 | 20.3300515114626 | 0.00818899087607861 | 1001_IWW_NEU_XX | 0.00440576439723372 |   0.0263742655862101 | -17.8649949568073 |  0.107406390698193 |  -0.00172169419760612 |  1001 | N         |  51 | Caucasian        | Male   | Not Hispanic
+   15 | 0.279287653266865 | 1714.78806315856 | 0.640036475244894 | 20.4194923376527 |  0.0191923566162586 | 1056_IWW_ANG_XX | 0.00617970153689385 |    0.157287388233623 |  -14.588174204413 | 0.0758633089362965 |  -0.00630259723184254 |  1056 | D         |  52 | African American | Female | Not Hispanic
+   16 | 0.269551973718645 | 1654.90518501966 | 0.540768876088126 | 20.2583982622566 |  0.0170957446098328 | 1043_IWW_ANG_XX | 0.00725560635328293 |    0.106419373338544 | -14.6145657074539 | 0.0964432923477222 |   -0.0130166561435662 |  1043 | D         |  25 | Caucasian        | Female | Hispanic
+   17 | 0.280654421498253 | 1268.60261397443 | 0.683045517409296 | 17.8978191188403 | 0.00520150549709797 | 1026_IOM_SAD_XX | 0.00250309379771352 |   0.0101016428952405 | -15.2312483208731 |  0.137626394570018 |   -0.0165915735168794 |  1026 | S         |  33 | Caucasian        | Male   | Not Hispanic
+   18 | 0.270593544736562 | 1301.26840714605 | 0.643302720363518 | 18.5854423950587 | 0.00622420571744442 | 1033_IOM_SAD_XX | 0.00305439345538616 |   0.0149799955850149 | -15.0715254604544 |  0.134654057230064 |   -0.0164116921044975 |  1033 | N:S       |  31 | Caucasian        | Male   | Not Hispanic
+   19 | 0.258862276619466 | 1379.61291440765 | 0.567416241401726 |  18.726025723719 |  0.0128878159448504 | 1021_IOM_FEA_XX | 0.00361576513387263 |   0.0838373804636585 | -16.3016851832542 |  0.128514431449465 |  -0.00466585584299214 |  1021 | N         |  30 | Caucasian        | Female | Not Hispanic
+   20 | 0.264046440414355 | 2020.20695477351 | 0.542178764477021 | 22.6607426174329 |  0.0374339483678341 | 1079_IEO_DIS_MD | 0.00493146199733019 |    0.629113089544168 | -14.4081904462415 |  0.145537918106021 |  -0.00393288661193325 |  1079 | N         |  21 | Caucasian        | Female | Hispanic
+   21 | 0.282351899237076 | 1377.98584370453 | 0.706669487920231 | 17.3251333470984 | 0.00741237727925181 | 1034_IOM_FEA_XX |  0.0043532270938158 |   0.0266343588691128 | -15.0412292153323 |  0.113110301791944 |  -0.00163069268624319 |  1034 | N         |  74 | Caucasian        | Male   | Not Hispanic
+   22 | 0.275654088619752 | 1424.36254582477 | 0.598997972666377 | 20.5582363769067 |  0.0109241688624024 | 1038_IWL_DIS_XX | 0.00406918302178383 |   0.0427914045282562 | -15.0594272881444 |  0.137923523825079 |  -0.00458982607893884 |  1038 | D         |  21 | African American | Male   | Not Hispanic
+   23 | 0.272002943615996 | 1454.99085933287 | 0.574955351414643 | 22.2894829518242 |  0.0275940969586372 | 1015_IOM_HAP_XX | 0.00422211131080985 |    0.334226919552461 | -13.9311991871278 | 0.0934767482497768 |   -0.0125509099489592 |  1015 | H         |  32 | African American | Male   | Not Hispanic
+features=# 1
+features-# COPY final TO '/Users/cmeaton/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/final.csv' DELIMITER ',' CSV HEADER;
+ERROR:  syntax error at or near "1"
+LINE 1: 1
+        ^
+features=# 1
+COPY final TO '/Users/cmeaton/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/final.csv' DELIMITER ',' CSV HEADER;
+ERROR:  syntax error at or near "1"
+LINE 1: 1
+        ^
+features=# COPY final TO '/Users/cmeaton/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/final.csv' DELIMITER ',' CSV HEADER;
+COPY 7837
+features=# 
+features=# COPY final TO '/Users/cmeaton/Documents/code/ds/METIS/sea19_ds7_workingdir/Project_McNulty/final.csv' DELIMITER ',' CSV HEADER;
+COPY 7837
+features=# sqlcmd -S myServer\instanceName -i C:\myScript.sql -o C:\EmpAdds.txt
+Invalid command \instanceName. Try \? for help.
+features-# 
+features-# 
