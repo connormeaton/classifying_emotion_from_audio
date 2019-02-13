@@ -46,17 +46,7 @@ I originally set out to build a model that predicted two classes, positive or ne
 
 [![Screen-Shot-2019-02-13-at-9-47-39-AM.png](https://i.postimg.cc/L8ywDKq7/Screen-Shot-2019-02-13-at-9-47-39-AM.png)](https://postimg.cc/18qvRdrc)
 
-Too late in the scope of the project timeline, I discovered the high-level benefits of pyAudioAnalysis. Building my model from the ground up in Librosa was a great exercise, but pyAudioAnalysis provides high-level functions to extract features and construct high performance classification models with relative ease. 
-
-For example, after installing pyAudioAnalsis from its Github repo (https://github.com/tyiannak/pyAudioAnalysis), I was able to train a SVM model on the same training data used before with the following command:
-
-$ python createClassifier.py trainingData
-
-I was then able to predict the emotional class of my own recorded speech utterances with probabilities in the 0.70-0.80 range with this command:
-
-$ python testClassifier.py sampleData/test.mp3
-
-Not bad for two lines of code. This is a very promising future direction for my work in emotional analysis.
+Too late in the scope of the project timeline, I discovered the high-level benefits of pyAudioAnalysis. Building my model from the ground up in Librosa was a great exercise, but pyAudioAnalysis (https://github.com/tyiannak/pyAudioAnalysis) provides high-level functions to extract features and construct high performance classification models with relative ease. With pyAudioAnalysis, I was able to train a SVM model on the same training data used before and predict the emotional class of my own recorded speech utterances with probabilities in the 0.70-0.80 range with just a few lines of code. This is a very promising future direction for my work in emotional analysis.
 
 In addition, natural language processing and deep learning was outside of the scope of this project. This prevented me from diving into text, image, or video emotional analysis, which I am looking forward to diving into in the future.
 
