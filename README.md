@@ -20,7 +20,7 @@ This data contains ~7,500 .mp3 files containing recordings of actors saying the 
 
 Numerous spectral features were extracted from waveforms (see below) as arrays from the raw mp3 files using the Librosa library. To prepare features for modeling, the mean and standard deviation was computed for each feature and merged into my postgreSQL database.
 
-[![Screen-Shot-2019-02-12-at-10-32-36-AM.png](https://i.postimg.cc/RCkJ184d/Screen-Shot-2019-02-12-at-10-32-36-AM.png)](https://postimg.cc/yWTNsLJ3)
+[![Screen-Shot-2019-02-13-at-9-48-46-AM.png](https://i.postimg.cc/3xBYHckC/Screen-Shot-2019-02-13-at-9-48-46-AM.png)](https://postimg.cc/BjXdTNcX)
 
 The final spectral features I included in my model were: chroma (standard deviation), contrast (mean), energy (mean), energy (standard deviation), MFCC (standard deviation), flatness (standard deviation), and zero cross rate (mean & standard deviation). My target was positive emotion (neutral/happy) and negative emotion (anger/disgust).
 
@@ -33,10 +33,12 @@ To compelte this project, I used python, jupyter notebooks, postgreSQL, pandas, 
 ### Model and Results
 I constructed a variety of models in this project, including Logistic Regression, K Nearest Neihbors, Random Forest, SVM, and XGBoost, all optimized with GridSearchCV. Parameters were tuned to optimize precision, which was my metric of concern so that my model limited false positives. XGBoost was chosen as my final model because it was the strongest performer across the board, with **precision and accuracy at .83.** 
 
+[![Screen-Shot-2019-02-13-at-10-27-04-AM.png](https://i.postimg.cc/7ZLQfsBN/Screen-Shot-2019-02-13-at-10-27-04-AM.png)](https://postimg.cc/F72x6ZXf)
+
 ### Future Work
 I originally set out to build a model that predicted two classes, positive or negative emotion. From my experience in emotional analysis, a ratio of positive:negative emotion is an incrediblely powerful and efficent way to analyze affect. However, this may have not been the best approach. Notice in the image below how polar emotions like happiness and anger look farily similar compared to neutral and sadness in terms of spectral flatness? This illustrates a positive class emotion (happiness) appearing more similar to a negative class emotion (anger) than its fellow positve emotions (neutral). Forcing spectral features from emotions that we intuitively group together in similar classes may not be optimal for machine learning, and predicting a class for each emotion on its own may increase overall performance. 
 
-[![Screen-Shot-2019-02-12-at-8-45-10-AM.png](https://i.postimg.cc/L51R6NW6/Screen-Shot-2019-02-12-at-8-45-10-AM.png)](https://postimg.cc/K3xC0rFd)
+[![Screen-Shot-2019-02-13-at-9-47-39-AM.png](https://i.postimg.cc/L8ywDKq7/Screen-Shot-2019-02-13-at-9-47-39-AM.png)](https://postimg.cc/18qvRdrc)
 
 Too late in the scope of the project timeline, I discovered the high-level benefits of pyAudioAnalysis. Building my model from the ground up in Librosa was a great exercise, but pyAudioAnalysis provides high-level functions to extract features and construct high performance classification models with relative ease. 
 
