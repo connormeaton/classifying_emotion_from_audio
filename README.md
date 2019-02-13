@@ -46,7 +46,7 @@ $ python createClassifier.py trainingData
 
 I was then able to predict the emotional class of my own recorded speech utterances with probabilities in the 0.70-0.80 range with this command:
 
-$ python testClassifier.py sampleData/happy_test.mp3
+$ python testClassifier.py sampleData/test.mp3
 
 Not bad for two lines of code. This is a very promising future direction for my work in emotional analysis.
 
