@@ -7,21 +7,39 @@
 
 ### Overview
 
-Human and machine interaction is becoming increasingly foundational to our society. From highly efficent automated call centers to suprisingly intimate companion machines, learning how to conduct life along side machines will be one of the major advancements and challenges of the 21st century. One of the principal components of fostering this cultural transition will be building machines that can perceive our emotions, however irrational and imcomprehensible they may sometimes seem. We generally understand  machines, so it would be good if they generally understood us.
+Human and machine interaction is becoming increasingly foundational to our society. From highly efficent automated call centers to suprisingly intimate companion machines, learning how to conduct life along side machines will be one of the major advancements and challenges of the 21st century. One of the principal components of fostering this cultural transition will be building machines that can predict our emotions, however irrational and imcomprehensible they may sometimes seem. We generally understand  machines, so it would be good if they generally understood us. 
 
-
-### Proposal
-In this project, I am proposing to build a logistic regression model to classify human speech audio files into positive or negative emotion classes.
+In this project, I built a classification model to predict positive or negative emotion in human speech.
 
 ### Data sources
 The data source for this project will be the Crowd-sourced Emotional Mutimodal Actors Dataset (CREMA-D). It can be found here:
 
 https://github.com/CheyneyComputerScience/CREMA-D/tree/master/docs
 
-There are multiple files/directories within this data set that will be utilized for this project. I will mainly be using the directory containing ~7,000 .mp3 files containing recordings of actors saying the same sentences with different emotions. In addition, I will be using data that tags each individual .mp3 with 1 of 6 emotions.
+This data contains ~7,500 .mp3 files containing recordings of actors saying the same 12 sentences with six different emotions. Other tables containing demographic data per actor and emotional tone per file were merged with audio files and cleaned in a postgress database.
 
-### Feature Extraction & Analysis
-There will be several steps to my analysis. First, features will be extracted from the raw mp3 files using the Librosa library. Then, a database with the extracted features along with data from other tables will be created and processed with SQL. Finally, I will create my model by training a logistic regresion algorithm on my data, which which classify whether or not an audio file will exhibit positive or negative emotion.
+Numerous spectral features were extracted as arrays from the raw mp3 files using the Librosa library. To prepare features for modeling, the mean and standard deviation was computed for each feature and merged into my postgreSQL database.
 
-### Potential Features
-Using Librosa, numerous features can be extracted from raw .mp3 files, such as Mel-frequency cepstrum coefficients (MFCCs). However, more research is needed into learning about the selection of audio features for human voice prior to building the model.
+The final features I included in my model were: chroma (standard deviation), contrast (mean), energy (mean), energy (standard deviation), MFCC (standard deviation), flatness (standard deviation), and zero cross rate (mean & standard deviation). My target was positive emotion (neutral/happy) and negative emotion (anger/disgust).
+
+### Project Layout
+All data cleaning and engineering was completed in postgress. For feature extraction and compilation, a .py script was written to input audio files and return a data frame of features. Modeling and visualizations were done in a .ipynb file. All of the above can be found in this repo.
+
+### Tools
+To compelte this project, I used python, jupyter notebooks, postgreSQL, pandas, numpy, matplotlib, scikit-learn, Ipython, Librosa, and XGBoost.
+
+### Model and Results
+I constructed a variety of models in this project, including Logistic Regression, K Nearest Neihbors, Random Forest, SVM, and XGBoost, all optimized with GridSearchCV. Parameters were tuned to optimize precision, which was my metric of concern so that my model limited false positives. XGBoost was chosen as my final model because it was the strongest performer across the board, with precision and accuracy at .83. 
+
+### Future Work
+The goal of this project was to build a binary classification model, however, this data is begging for multiclass classification. Notice how polar emotions like happiness and anger look farily similar compared to neutral and sadness in terms of spectral flatness? This illustrates a positive class emotion (happiness) appearing more similar to a negative class emotion (anger) than its fellow positve emotions (neutral). Forcing spectral features from emotions that we intuitively group together in similar classes may not be optimal for machine learning, and predicting a class for each emotion on its own may increase overall performance. 
+
+![](Screen Shot 2019-02-12 at 8.45.10 AM.png)
+
+In addition, natural language processing and deep learning was outside of the scope of this project. This prevented me from diving into text, image, or video emotional analysis, which I am looking forward to diving into in the future.
+
+### Final Thoughts
+Even though I built a classification model to predict emotion with 83% accuracy, I’m not necessarily happy about it. Internally, I carry two polarizing perceptions of this technology, of which I have only scratched the surface. The romantic within me feels that the subjectivity, mystery, and power of emotion is one of the last frontiers of the human experience left unspoiled. If we strip emotion down to synapses and waveform statistics, will that degrade the potency of art, love, and beauty? However, the technologist in me envisions a future with human-centered AI, where our daily lives are full of interactions with emotionally perceptive machines that enhance the human experience. 
+
+This is an amazing era to study the psychology and machine learning and I am so grateful to be somewhere in the middle. This intersection will greatly influence the way we interact with machines in the coming years, and I look forward to playing my role in shaping a meaningful future.
+
