@@ -34,7 +34,7 @@ I constructed a variety of models in this project, including Logistic Regression
 ### Future Work
 The goal of this project was to build a binary classification model, however, this data is begging for multiclass classification. Notice how polar emotions like happiness and anger look farily similar compared to neutral and sadness in terms of spectral flatness? This illustrates a positive class emotion (happiness) appearing more similar to a negative class emotion (anger) than its fellow positve emotions (neutral). Forcing spectral features from emotions that we intuitively group together in similar classes may not be optimal for machine learning, and predicting a class for each emotion on its own may increase overall performance. 
 
-![](cmeaton/Desktop/Screen Shot 2019-02-12 at 8.45.10 AM.png)
+![](Screen Shot 2019-02-12 at 8.45.10 AM.png)
 
 In addition, natural language processing and deep learning was outside of the scope of this project. This prevented me from diving into text, image, or video emotional analysis, which I am looking forward to diving into in the future.
 
