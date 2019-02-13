@@ -20,7 +20,9 @@ This data contains ~7,500 .mp3 files containing recordings of actors saying the 
 
 Numerous spectral features were extracted as arrays from the raw mp3 files using the Librosa library. To prepare features for modeling, the mean and standard deviation was computed for each feature and merged into my postgreSQL database.
 
-The final features I included in my model were: chroma (standard deviation), contrast (mean), energy (mean), energy (standard deviation), MFCC (standard deviation), flatness (standard deviation), and zero cross rate (mean & standard deviation). My target was positive emotion (neutral/happy) and negative emotion (anger/disgust).
+The final spectral features I included in my model were: chroma (standard deviation), contrast (mean), energy (mean), energy (standard deviation), MFCC (standard deviation), flatness (standard deviation), and zero cross rate (mean & standard deviation). My target was positive emotion (neutral/happy) and negative emotion (anger/disgust).
+
+![plot](⁨picture_2.png)
 
 ### Project Layout
 All data cleaning and engineering was completed in postgress. For feature extraction and compilation, a .py script was written to input audio files and return a data frame of features. Modeling and visualizations were done in a .ipynb file. All of the above can be found in this repo.
