@@ -22,7 +22,7 @@ Numerous spectral features were extracted as arrays from the raw mp3 files using
 
 The final spectral features I included in my model were: chroma (standard deviation), contrast (mean), energy (mean), energy (standard deviation), MFCC (standard deviation), flatness (standard deviation), and zero cross rate (mean & standard deviation). My target was positive emotion (neutral/happy) and negative emotion (anger/disgust).
 
-![plot](⁨picture_2.png)
+[![Screen-Shot-2019-02-12-at-10-32-36-AM.png](https://i.postimg.cc/RCkJ184d/Screen-Shot-2019-02-12-at-10-32-36-AM.png)](https://postimg.cc/yWTNsLJ3)
 
 ### Project Layout
 All data cleaning and engineering was completed in postgress. For feature extraction and compilation, a .py script was written to input audio files and return a data frame of features. Modeling and visualizations were done in a .ipynb file. All of the above can be found in this repo.
