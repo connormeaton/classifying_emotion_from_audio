@@ -38,7 +38,17 @@ I originally set out to build a model that predicted two classes, positive or ne
 
 [![Screen-Shot-2019-02-12-at-8-45-10-AM.png](https://i.postimg.cc/L51R6NW6/Screen-Shot-2019-02-12-at-8-45-10-AM.png)](https://postimg.cc/K3xC0rFd)
 
-Too late in the scope of the project timeline, I discovered the high-level benefits of pyAudioAnalysis. Building my model from the ground up in Librosa was a great exercise, but pyAudioAnalysis provides high-level functions to extract features and construct high performance classification models with relative ease. I'll likely focus on pyAudioAnalysis for my future work in audio analysis.
+Too late in the scope of the project timeline, I discovered the high-level benefits of pyAudioAnalysis. Building my model from the ground up in Librosa was a great exercise, but pyAudioAnalysis provides high-level functions to extract features and construct high performance classification models with relative ease. 
+
+For example, after installing pyAudioAnalsis from its Github repo (https://github.com/tyiannak/pyAudioAnalysis), I was able to train a SVM model on the same training data used before with the following command:
+
+$ python createClassifier.py trainingData
+
+I was then able to predict the emotional class of my own recorded speech utterances with probabilities in the 0.70-0.80 range with this command:
+
+$ python testClassifier.py sampleData/happy_test.mp3
+
+Not bad for two lines of code. This is a very promising future direction for my work in emotional analysis.
 
 In addition, natural language processing and deep learning was outside of the scope of this project. This prevented me from diving into text, image, or video emotional analysis, which I am looking forward to diving into in the future.
 
