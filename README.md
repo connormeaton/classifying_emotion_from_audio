@@ -3,7 +3,7 @@
 **Metis: Project McNulty. January, 30, 2019.**
 
 # Affective Audio
-## Using logistic regression to classify vocal emotion
+## Using classification to predict vocal emotion
 
 ### Overview
 
