@@ -33,6 +33,12 @@ To compelte this project, I used python, jupyter notebooks, postgreSQL, pandas, 
 ### Model and Results
 I constructed a variety of models in this project, including Logistic Regression, K Nearest Neihbors, Random Forest, SVM, and XGBoost, all optimized with GridSearchCV. Parameters were tuned to optimize precision, which was my metric of concern so that my model limited false positives. XGBoost was chosen as my final model because it was the strongest performer across the board, with **precision and accuracy at .83.** 
 
+Below is the ROC curve, along with the rest of the performance metrics on my model.
+
+[![Screen-Shot-2019-02-13-at-11-21-16-AM.png](https://i.postimg.cc/3NNHjXYM/Screen-Shot-2019-02-13-at-11-21-16-AM.png)](https://postimg.cc/1nkTsN8M)
+
+Below is a confusion matrix for my model predicting on my testing data. Note the low occurance of False Positives, which is what I want to avoid.
+
 [![Screen-Shot-2019-02-13-at-10-27-04-AM.png](https://i.postimg.cc/7ZLQfsBN/Screen-Shot-2019-02-13-at-10-27-04-AM.png)](https://postimg.cc/F72x6ZXf)
 
 ### Future Work
