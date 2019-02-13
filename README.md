@@ -31,7 +31,7 @@ All data cleaning and engineering was completed in postgress. For feature extrac
 To compelte this project, I used python, jupyter notebooks, postgreSQL, pandas, numpy, matplotlib, scikit-learn, Ipython, Librosa, and XGBoost.
 
 ### Model and Results
-I constructed a variety of models in this project, including Logistic Regression, K Nearest Neihbors, Random Forest, SVM, and XGBoost, all optimized with GridSearchCV. Parameters were tuned to optimize precision, which was my metric of concern so that my model limited false positives. XGBoost was chosen as my final model because it was the strongest performer across the board, with precision and accuracy at .83. 
+I constructed a variety of models in this project, including Logistic Regression, K Nearest Neihbors, Random Forest, SVM, and XGBoost, all optimized with GridSearchCV. Parameters were tuned to optimize precision, which was my metric of concern so that my model limited false positives. XGBoost was chosen as my final model because it was the strongest performer across the board, with **precision and accuracy at .83.** 
 
 ### Future Work
 The goal of this project was to build a binary classification model, however, this data is begging for multiclass classification. Notice in the image below how polar emotions like happiness and anger look farily similar compared to neutral and sadness in terms of spectral flatness? This illustrates a positive class emotion (happiness) appearing more similar to a negative class emotion (anger) than its fellow positve emotions (neutral). Forcing spectral features from emotions that we intuitively group together in similar classes may not be optimal for machine learning, and predicting a class for each emotion on its own may increase overall performance. 
