@@ -37,7 +37,7 @@ Below is the ROC curve, along with the rest of the performance metrics on my mod
 
 [![Screen-Shot-2019-02-13-at-11-21-16-AM.png](https://i.postimg.cc/3NNHjXYM/Screen-Shot-2019-02-13-at-11-21-16-AM.png)](https://postimg.cc/1nkTsN8M)
 
-Below is a confusion matrix for my model predicting on my testing data. Note the low occurance of False Positives, which is what I want to avoid.
+Below is a confusion matrix for my model predicting on my testing data. Note the low occurance of False Positives, which is what I wanted to avoid.
 
 [![Screen-Shot-2019-02-13-at-10-27-04-AM.png](https://i.postimg.cc/7ZLQfsBN/Screen-Shot-2019-02-13-at-10-27-04-AM.png)](https://postimg.cc/F72x6ZXf)
 
